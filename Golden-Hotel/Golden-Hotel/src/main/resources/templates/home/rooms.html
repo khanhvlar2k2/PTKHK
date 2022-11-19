@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head.html"></th:block>
+    <style>
+        #header nav {
+            background-color: rgb(255, 255, 255) !important;
+        }
+        
+        .scroll a {
+            color: rgb(7, 6, 46) !important;
+        }
+        
+        img {
+            background-color: rgb(7, 4, 51);
+        }
+        
+        .header-background {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            height: 240px;
+            background: url('https://tbb-prod-apac.imgix.net/attachments/properties/banners/15299/Swimming_Pool_5.JPG?auto=format,compress&fit=crop&crop=entropy&w=1570&h=300&q=55 1x, https://tbb-prod-apac.imgix.net/attachments/properties/banners/15299/Swimming_Pool_5.JPG?auto=format,compress&fit=crop&crop=entropy&w=1570&h=300&dpr=2&q=20 2x');
+            background-size: cover;
+            backdrop-filter: unset;
+        }
+        
+        .booking-room {
+            margin-top: -100px;
+        }
+        
+        form {
+            background-color: black;
+        }
+        
+        .input-title {
+            color: rgb(0, 64, 94);
+            margin: 0 auto;
+            font-weight: 700;
+            background-color: aliceblue;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 3px;
+        }
+    </style>
+
+</head>
+
+<body id="home">
+    <header id="header">
+        <nav id="main-nav" class="navbar navbar-default " role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index.html"><img src="/images/logo.png" alt="logo"></a>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="scroll "><a href="/index.html">Trang chủ</a></li>
+                        <li class="scroll"><a href="/Login.html">Thông tin khách sạn</a></li>
+                        <li class="scroll"><a href="/Login.html">Tìm đặt phòng</a></li>
+                        <li class="scroll"><a href="/Login.html"><i class="fa fa-phone" aria-hidden="true"></i> 0934436572</a></li>
+                        <li class="scroll"><a href="/Login.html">Đăng nhập</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.container-->
+        </nav>
+        <div class="header-background"></div>
+        <div class="booking-room">
+            <form action="" class="book-room-form">
+
+                <div class="input-group w-20">
+                    <div class="input-title">Ngày nhận phòng </div>
+                    <input class="input-text" type="datetime-local" value="yyyy-mm-ddT13:00">
+                </div>
+                <div class="input-group w-20">
+                    <div class="input-title">Ngày trả phòng </div>
+                    <input class="input-text" type="datetime-local" value="yyyy-mm-ddT13:00">
+                </div>
+                <div class="input-group w-20">
+                    <div class="input-title">Loại Phòng </div>
+                    <select class="input-text">
+                                <option value="standardRoom">Room Standard</option>
+                                <option value="superiorroom">Room Superior</option>
+                                <option value="deluxeroom">Room Deluxe</option>
+                                <option value="suiteRoom">Room Suite</option>
+                              </select>
+                </div>
+                <div class="input-group w-16">
+                    <div class="input-title">Adults</div>
+                    <select class="input-text">
+                                        <option value="ageChildren">1</option>
+                                        <option value="ageChildren">2</option>
+                                <option value="ageChildren">5</option>
+                              </select>
+                </div>
+                <div class="input-group w-20">
+                    <button style="width: 200px; height: 50px; margin-top: 25px; background-color: #09335f; border: none; color: white; font-weight: bolder;">TÌM KIẾM </button>
+                </div>
+
+            </form>
+        </div>
+        <!--/nav-->
+    </header>
+     <th:block th:replace="/layout/script.html"></th:block>
+    <!--   Core JS Files   -->
+    
+</body>
+
+</html>

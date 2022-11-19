@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+
+<head>
+     <th:block th:replace="/layout/head.html"></th:block>
+
+    <link  th:href="@{/css/hover-rooms.css}" rel="stylesheet">
+   <link  th:href="@{/css/rooms.css}" rel="stylesheet">
+    <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+      #bookingForm{
+           background-color: white !important;
+      
+      
+      }
+      input{
+          height: 40px !important;
+          border-radius: 20px !important; 
+           font-size: 18px;
+           font-weight: 500 !important;
+      }
+      
+  </style>
+    
+</head>
+
+<body>
+      <header id="header">
+        
+       <th:block th:replace="/layout/nav2.html"></th:block>
+
+    </header>
+    <div id="booking">
+        <div class="container">
+            <div class="section-header">
+                <h2>Room Booking</h2>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="booking-form">
+                        <div id="success"></div>
+                        <form name="sentMessage" id="bookingForm" novalidate="novalidate">
+                            <div class="form-row">
+                                <div class="control-group col-md-6">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" id="fname" placeholder="John" required="required" data-validation-required-message="Please enter first name" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group col-md-6">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" id="lname" placeholder="Sina" required="required" data-validation-required-message="Please enter last name" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="control-group col-md-6">
+                                    <label>Mobile</label>
+                                    <input type="text" class="form-control" id="mobile" placeholder=" +1 234 567 8900" required="required" data-validation-required-message="Please enter your mobile number" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group col-md-6">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder=" email@example.com" required="required" data-validation-required-message="Please enter your email" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="control-group col-md-6">
+                                    <label>Check-In</label>
+                                    <input  type="datetime-local" value="yyyy-mm-ddT13:00" class="form-control datetimepicker-input" id="date-1"  data-toggle="datetimepicker" data-target="#date-1" placeholder="E.g. MM/DD/YYYY" required="required" data-validation-required-message="Please enter date">
+
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group col-md-6">
+                                    <label>Check-Out</label>
+                                    <input  type="datetime-local" value="yyyy-mm-ddT13:00" class="form-control datetimepicker-input" id="date-2" data-toggle="datetimepicker" data-target="#date-2" placeholder="E.g. MM/DD/YYYY" required="required" data-validation-required-message="Please enter date" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group col-md-12">
+                                <label>Address</label>
+                                
+                                <input type="text" class="form-control" id="request" placeholder="Special Request" required="required" data-validation-required-message="Please enter your special request" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-md-12">
+                               <div class="button"><button type="submit" id="bookingButton">Book Now</button></div>
+                            </div>
+                            
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Booking Section End -->
+
+    
+</body>
+
+</html>

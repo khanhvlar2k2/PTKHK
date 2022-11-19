@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head.html"></th:block>
+   <link  th:href="@{/css/hover-rooms.css}" rel="stylesheet">
+   <link  th:href="@{/css/rooms.css}" rel="stylesheet">
+    <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ </head>
+
+<body id="home">
+    <header id="header">
+         <th:block th:replace="/layout/nav2.html"></th:block>
+        <div class="header-background"></div>
+        <div class="booking-room">
+            <form action="" class="book-room-form">
+
+                <div class="input-group w-20">
+                    <div class="input-title">Ngày nhận phòng </div>
+                    <input class="input-text" type="datetime-local" value="yyyy-mm-ddT13:00">
+                </div>
+                <div class="input-group w-20">
+                    <div class="input-title">Ngày trả phòng </div>
+                    <input class="input-text" type="datetime-local"  value="Ngày">
+                </div>
+                <div class="input-group w-20">
+                    <div class="input-title">Loại Phòng </div>
+                    <select class="input-text">
+                                <option value="standardRoom">Room Standard</option>
+                                <option value="superiorroom">Room Superior</option>
+                                <option value="deluxeroom">Room Deluxe</option>
+                                <option value="suiteRoom">Room Suite</option>
+                              </select>
+                </div>
+                <div class="input-group w-16">
+                    <div class="input-title">Adults</div>
+                    <select class="input-text">
+                                        <option value="ageChildren">1</option>
+                                        <option value="ageChildren">2</option>
+                                <option value="ageChildren">5</option>
+                              </select>
+                </div>
+                <div class="input-group w-20">
+                    <button style="width: 200px; height: 50px; margin-top: 25px; background-color: #09335f; border: none; color: white; font-weight: bolder;">TÌM KIẾM </button>
+                </div>
+
+            </form>
+        </div>
+        <!--/nav-->
+    </header>
+     
+      <div class="container " >
+      <div class="section-header room-title">
+                <h2  >Our Rooms</h2>
+            </div>
+             <div class="col-md-12 list-room" th:each="items:${rooms}"> 
+                      <div class="room-info">
+                        <div class="col-md-3 ">
+                            <div class="room-img">
+                                <div class="box12">
+                                    <!-- <img src="/images/" alt=""> -->
+                                    <img style="height: 200px; width: auto; margin-bottom: 10px" src="https://vinapad.com/wp-content/uploads/2020/07/phong-standard-la-gi.jpg">
+                                    <div class="box-content">
+                                        <h3 class="title" >[[${items.thumbnail}]]</h3>
+                                        <ul class="icon">
+                                            <li><a href="#" data-toggle="modal" data-target="#modal-id"><i class="fa fa-link"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="room-des">
+                                <h3><a href="#" data-toggle="modal" data-target="#modal-id"></a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <ul class="room-size  col-md-4">
+                                    <li><i class="fa fa-arrow-right"></i>  Size: 40m2 </li>
+                                    <li><i class="fa fa-bed" aria-hidden="true"></i> Beds: 2 Single(s) </li>
+                                    <li><i class="fa fa-bath"></i> Bathroom: 1  </li>
+                                </ul>
+                                <ul class="room-size  col-md-6">
+                                    <li><i class="fa fa-wifi" ></i>  Free Wifi</li>
+                                    <li><i class="fa fa-television" aria-hidden="true"  > </i> Cable TV channel  </li>
+                                    <li><i class="fa fa-check"></i> Free swimming pool  </li>
+                                </ul>
+
+                                                           
+                            </div>
+                                                          
+                        </div>
+                        <div class="col-md-3">
+                            <div class="room-rate">
+                                <a  href="/rooms/detail-room"  style="text-decoration:underline;">Xem chi tiết phòng</a>
+                                <p style="font-size: 18px" >VND/Đêm</p>
+                                <a href="/rooms/checkout" class="booknow">Book Now</a>
+                            </div>
+                        </div>
+                   </div>
+                    </div>
+                </div> 
+                
+          <th:block th:replace="/layout/footer.html"></th:block>
+           
+    <!--   Core JS Files   -->
+    
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head.html"></th:block>
+    <link rel="stylesheet" th:href="@{/css/detail-room.css}">
+
+</head>
+
+<body>
+    <div class="header">
+        <a href="/index.html"><img src="/images/logo.png" alt="logo" style="width: auto;  height:50px;margin: 20px;"></a>
+    </div>
+    <div class="main-wrapper">
+
+        <div class="container1">
+            <div class="product-div">
+                <div class="product-div-left">
+                    <div class="img-container">
+                        <img src="https://d3ehecxdotm942.cloudfront.net/01e88ebe628f1b9b3470f237ae9b3d6c/2544e5b1e7659a7/93098c882db61702b6c7b1fb60a9c1cf-h128-scale.jpg" alt="watch" height="500">
+                    </div>
+                    <div class="hover-container">
+                        <div><img src="https://d3ehecxdotm942.cloudfront.net/01e88ebe628f1b9b3470f237ae9b3d6c/2544e5b1e7659a7/93098c882db61702b6c7b1fb60a9c1cf-h128-scale.jpg"></div>
+                        <div><img src="https://d3ehecxdotm942.cloudfront.net/01e88ebe628f1b9b3470f237ae9b3d6c/2544e5b1e7659a7/b8a211dbe2196b447d66aebf2d25ea28-h128-scale.jpg"></div>
+                        <div><img src="https://d3ehecxdotm942.cloudfront.net/01e88ebe628f1b9b3470f237ae9b3d6c/2544e5b1e7659a7/f679ff1707222b29061c4a31e508ef24-h128-scale.jpg"></div>
+                        <div><img src="https://d3ehecxdotm942.cloudfront.net/01e88ebe628f1b9b3470f237ae9b3d6c/2544e5b1e7659a7/ed65e28367ea37b9c72cf152911306f4-h128-scale.jpg"></div>
+
+                    </div>
+                </div>
+                <div class="product-div-right">
+                    <h1 class="product-name">Premium ($198)</h1>
+                    <h3 class="product-price">With a wonderful mix of warm natural wood furniture and parquet flooring creates the backdrop for a completely relaxed stay as being home.</h3>
+                    <div class="product-rating">
+                        <span><i class="fa fa-check" ></i> WiFi miễn phí</span> &emsp;
+                        <span><i class="fa fa-check"></i> Điều hoà nhiệt độ</span> &emsp;
+                        <span><i class="fa fa-check" ></i> Kênh phim truyền hình cáp</span>
+
+
+                    </div>
+                    <div class="product-description">
+                        <h4>Số người tối đa</h4>
+                        <span><i class="fa fa-users" aria-hidden="true"></i>  5 người</span>
+
+                    </div>
+                    <div class="product-description">
+                        <h4>Thiết bị kĩ thuật số</h4>
+                        <span>Kênh phim truyền hình cáp, Màn hình LCD/Plasma, WiFi, WiFi miễn phí, Truy cập internet miễn phí</span>
+                    </div>
+                    <div class="product-description">
+                        <h4>Tiện nghi</h4>
+                        <span>Điều hoà nhiệt độ, Đồng hồ báo thức, Áo choàng tắm, Báo hàng ngày, Điện thoại quay số trực tiếp, Khóa cửa điện tử, Thiết bị phát hiện khói điện tử, Giường phụ, Dịch vụ giặt là, Quầy bar mini trong phòng, Két an toàn, Bàn là + Cầu là (Theo yêu cầu), Két để máy tính xách tay, Bàn làm việc, Dép lê, Bình pha cà phê và ấm trà, Két trong phòng, Có phòng cho người không hút thuốc, Có phòng cho người hút thuốc</span>
+                    </div>
+                    <div class="product-description">
+                        <h4>Lựa chọn giường</h4>
+                        <span>Giường King, Cặp giường đơn</span>
+                    </div>
+                    <div class="product-description">
+                        <h4>Phòng tắm</h4>
+                        <span>Máy sấy tóc, Vòi hoa sen, Bồn tắm</span>
+                    </div>
+                    <div class="product-description">
+                        <h4>Phòng tắm</h4>
+                        <span>Máy sấy tóc, Vòi hoa sen, Bồn tắm</span>
+                    </div>
+                    <div class="product-description">
+                        <h4>Diện tích bề mặt</h4>
+                        <span>38 m²</span>
+                    </div>
+
+                    <div class="btn-groups">
+
+                        <button type="button" class="buy-now-btn"><i class = "fas fa-wallet"></i>Booking now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/detail-room.js}"></script>
+     <th:block th:replace="/layout/script.html"></th:block>
+</body>
+
+</html>
