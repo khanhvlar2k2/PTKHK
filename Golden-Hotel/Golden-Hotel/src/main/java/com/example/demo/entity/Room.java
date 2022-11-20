@@ -8,6 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
@@ -15,13 +16,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "Room")
+@Data
 public class Room {
-	@Id
+	 @Id
 	 int id;
 	 String photo;
-	 int Status;
+	 int status;
 	@ManyToOne
-	@JoinColumn(name = "hotelid")
+	@JoinColumn(name = "HotelID")
 	 Hotel hotel;
 	@ManyToOne
 	@JoinColumn(name = "roomtype")

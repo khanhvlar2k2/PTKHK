@@ -14,38 +14,38 @@
          <th:block th:replace="/layout/nav2.html"></th:block>
         <div class="header-background"></div>
         <div class="booking-room">
-            <form action="" class="book-room-form">
-
+           <form action="/rooms" method="get" class="book-room-form">
+            <div class="book-room-chill">
                 <div class="input-group w-20">
                     <div class="input-title">Ngày nhận phòng </div>
-                    <input class="input-text" type="datetime-local" value="yyyy-mm-ddT13:00">
+                    <input class="input-text" name="dateRe" type="datetime-local" th:value="${datetake}" id="input_data_name">
                 </div>
                 <div class="input-group w-20">
                     <div class="input-title">Ngày trả phòng </div>
-                    <input class="input-text" type="datetime-local"  value="Ngày">
+                    <input class="input-text" name="dateLe" type="datetime-local" th:value="${dateleave}">
                 </div>
                 <div class="input-group w-20">
-                    <div class="input-title">Loại Phòng </div>
-                    <select class="input-text">
-                                <option value="standardRoom">Room Standard</option>
-                                <option value="superiorroom">Room Superior</option>
-                                <option value="deluxeroom">Room Deluxe</option>
-                                <option value="suiteRoom">Room Suite</option>
-                              </select>
+                    <div class="input-title">Loại phòng </div>
+                    <select class="input-text" name="roomtp">
+                 <option th:each="i : ${types}" th:value="${i.type}" th:text="${i.name}"></option>
+                 <option th:value="${roomtype}" th:text="${roomname}"></option>
+
+              </select>
                 </div>
                 <div class="input-group w-16">
                     <div class="input-title">Adults</div>
-                    <select class="input-text">
-                                        <option value="ageChildren">1</option>
-                                        <option value="ageChildren">2</option>
-                                <option value="ageChildren">5</option>
-                              </select>
+                    <select class="input-text" name="quantity">
+                        <option th:value="${adultquantity}"  th:text="${adultquantity}"></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+               			<option value="5">5</option>
+              </select>
                 </div>
                 <div class="input-group w-20">
-                    <button style="width: 200px; height: 50px; margin-top: 25px; background-color: #09335f; border: none; color: white; font-weight: bolder;">TÌM KIẾM </button>
+                    <button style="width: 200px; height: 50px; margin-top: 35px; background-color: #012449; border: none; color: white; font-weight: bolder;"><a href="/rooms">TÌM KIẾM</a> </button>
                 </div>
-
-            </form>
+            </div>
+        </form>
         </div>
         <!--/nav-->
     </header>
@@ -54,7 +54,7 @@
       <div class="section-header room-title">
                 <h2  >Our Rooms</h2>
             </div>
-             <div class="col-md-12 list-room" th:each="items:${rooms}"> 
+             <div class="col-md-12 list-room" th:each="room : ${rooms}"> 
                       <div class="room-info">
                         <div class="col-md-3 ">
                             <div class="room-img">
@@ -62,7 +62,7 @@
                                     <!-- <img src="/images/" alt=""> -->
                                     <img style="height: 200px; width: auto; margin-bottom: 10px" src="https://vinapad.com/wp-content/uploads/2020/07/phong-standard-la-gi.jpg">
                                     <div class="box-content">
-                                        <h3 class="title" >[[${items.thumbnail}]]</h3>
+                                        <h3 class="title" ></h3>
                                         <ul class="icon">
                                             <li><a href="#" data-toggle="modal" data-target="#modal-id"><i class="fa fa-link"></i></a></li>
                                         </ul>
@@ -73,7 +73,7 @@
                         <div class="col-md-6">
                             <div class="room-des">
                                 <h3><a href="#" data-toggle="modal" data-target="#modal-id"></a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p th:text="${room.rtype.name}"></p>
                                 <ul class="room-size  col-md-4">
                                     <li><i class="fa fa-arrow-right"></i>  Size: 40m2 </li>
                                     <li><i class="fa fa-bed" aria-hidden="true"></i> Beds: 2 Single(s) </li>
@@ -92,7 +92,7 @@
                         <div class="col-md-3">
                             <div class="room-rate">
                                 <a  href="/rooms/detail-room"  style="text-decoration:underline;">Xem chi tiết phòng</a>
-                                <p style="font-size: 18px" >VND/Đêm</p>
+                                <p style="font-size: 18px"  >   [[${room.rtype.price}]] VND/Đêm</p>
                                 <a href="/rooms/checkout" class="booknow">Book Now</a>
                             </div>
                         </div>
