@@ -1,14 +1,9 @@
 app.controller("account-ctrl", function($scope, $http, $location) {
  $scope.items = [];
- $scope.roles = [];
  $scope.form = {};
  $scope.hotels = [];
 
  $scope.initialize = function(){
-	   $http.get("/rest/roles").then(resp => {
-            $scope.roles = resp.data;
-           console.log(resp.data);	
-        });
 	//load accounts
 	  $http.get("/rest/accounts").then(resp=>{
 			$scope.items = resp.data;
@@ -18,13 +13,12 @@ app.controller("account-ctrl", function($scope, $http, $location) {
             $scope.hotels = resp.data;
         console.log(resp.data);	
         });
-		$scope.reset();
+		
 		
 	}
 		//reset form
 	$scope.reset = function(){
-		$scope.form = {
-			 
+		$scope.form = {		 
 		     avatar:'no_avatar.png',
              status:true,
              gender:false
@@ -91,7 +85,7 @@ app.controller("account-ctrl", function($scope, $http, $location) {
     }
 		
 	$scope.initialize();
-	
+	$scope.reset();
 	$scope.pager = {
 		page:0,
 		size:9,
