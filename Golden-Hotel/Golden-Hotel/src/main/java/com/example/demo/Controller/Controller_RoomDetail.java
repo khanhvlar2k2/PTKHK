@@ -8,17 +8,21 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.dao.DAO_RoomType;
+
 
 
 @Controller
 @RequestMapping("")
 public class Controller_RoomDetail {
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")    
 	private LocalDateTime date;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")    
@@ -27,10 +31,6 @@ public class Controller_RoomDetail {
 	public String Rooms(Model model, HttpServletRequest req) {
 		loadData(model, req);
 		return "home/rooms";
-	}
-	@GetMapping({"/home/detail-room"})
-	public String DetailRoom(Model model) {
-		return "home/detail-room";
 	}
 	
 	protected void loadData(Model model, HttpServletRequest req) {

@@ -13,11 +13,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dao.DAO_Empolyee;
 import com.example.demo.dao.DAO_Room;
 import com.example.demo.dao.DAO_RoomType;
+import com.example.demo.entity.Room;
 import com.example.demo.entity.RoomType;
 
 
@@ -40,8 +42,10 @@ public class Controller_Room {
 		model.addAttribute("rooms", dao.findAllData());
 		return "room/rooms";
 	}
-	@GetMapping({"/detail-room"})
-	public String DetailRoom(Model model) {
+	@GetMapping({"/detail-room/{id}"})
+	public String DetailRoom(Model model, @PathVariable("id") String id) {
+        Room item = dao.findbyRoomTypeWithRoom(id);
+        model.addAttribute("item", item);
 		return "room/detail-room";
 	}
 	@GetMapping({"/checkout"})

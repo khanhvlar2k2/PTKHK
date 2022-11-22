@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +34,7 @@ public class Empolyee {
  	 @JoinColumn(name = "roleid")
  	 private Role role;
      private String fullname;
+ 	@DateTimeFormat(pattern="yyyy-MM-dd")    
      private Date dob;
      private boolean gender;
      private String phoneno;
@@ -41,5 +44,6 @@ public class Empolyee {
      private int type;
      private boolean status;
      private String description;
+     private String avatar;
      
 }

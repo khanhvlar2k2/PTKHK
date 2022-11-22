@@ -17,15 +17,15 @@
            <form action="/rooms" method="get" class="book-room-form">
             <div class="book-room-chill">
                 <div class="input-group w-20">
-                    <div class="input-title">Ngày nhận phòng </div>
+                    <div class="input-title">Ngày Nhận Phòng</div>
                     <input class="input-text" name="dateRe" type="datetime-local" th:value="${datetake}" id="input_data_name">
                 </div>
                 <div class="input-group w-20">
-                    <div class="input-title">Ngày trả phòng </div>
+                    <div class="input-title">Ngày Trả Phòng </div>
                     <input class="input-text" name="dateLe" type="datetime-local" th:value="${dateleave}">
                 </div>
                 <div class="input-group w-20">
-                    <div class="input-title">Loại phòng </div>
+                    <div class="input-title">Loại Phòng </div>
                     <select class="input-text" name="roomtp">
                  <option th:each="i : ${types}" th:value="${i.type}" th:text="${i.name}"></option>
                  <option th:value="${roomtype}" th:text="${roomname}"></option>
@@ -42,7 +42,7 @@
               </select>
                 </div>
                 <div class="input-group w-20">
-                    <button style="width: 200px; height: 50px; margin-top: 35px; background-color: #012449; border: none; color: white; font-weight: bolder;"><a href="/rooms">TÌM KIẾM</a> </button>
+                    <button style="width: 200px; height: 50px;  background-color: #012449; border: none; color: white!; font-weight: bolder;"><a href="/rooms">TÌm KIếm</a> </button>
                 </div>
             </div>
         </form>
@@ -91,8 +91,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="room-rate">
-                                <a  href="/rooms/detail-room"  style="text-decoration:underline;">Xem chi tiết phòng</a>
-                                <p style="font-size: 18px"  >   [[${room.rtype.price}]] VND/Đêm</p>
+                                <a  th:href="@{|/rooms/detail-room/${room.rtype.name}|}"  style="text-decoration:underline;">Xem chi tiáº¿t phÃ²ng</a>
+                                <p style="font-size: 18px"  >   [[${room.rtype.price}]] VND/Ä�Ãªm</p>
                                 <a href="/rooms/checkout" class="booknow">Book Now</a>
                             </div>
                         </div>

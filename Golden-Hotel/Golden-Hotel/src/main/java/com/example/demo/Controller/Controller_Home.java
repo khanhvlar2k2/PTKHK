@@ -41,4 +41,10 @@ public class Controller_Home {
 		return "redirect:/rooms";
 	}
 	
+	@GetMapping({"admin","admin/home/index"})
+	public String admin(Model model) {
+		model.addAttribute("title", "About");
+		return "redirect:/admin/index.html";
+	}
+	
 }
