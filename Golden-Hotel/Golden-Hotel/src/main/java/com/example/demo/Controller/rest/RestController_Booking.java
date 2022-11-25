@@ -17,37 +17,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dao.DAO_Booking;
 import com.example.demo.dao.DAO_Roles;
+import com.example.demo.entity.Booking;
 import com.example.demo.entity.Role;
+import com.example.demo.entity.Room;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("rest")
-public class RestController_Role {
-	@Autowired private  DAO_Roles roleService ;
-	@GetMapping("/roles")
-	public List<Role> getAllRoles(){
-		return roleService.findAll();
+public class RestController_Booking {
+	@Autowired private  DAO_Booking bookingService ;
+	@GetMapping("/booking")
+	public List<Booking> getAll(){
+		return bookingService.finBokingRoom();
 	}
 	
-	@GetMapping("/roles/{id}")
-	public Role getOne(@PathVariable("id")int id) {
-		return roleService.findById(id).get();
+	@GetMapping("/booking/{id}")
+	public Booking getOne(@PathVariable("id")int id) {
+		return bookingService.getById(id);
 	}
 	
-	@PostMapping
-	public Role create(@RequestBody Role role) {
-		return roleService.save(role);
+	@PostMapping("/booking")
+	public Booking create(@RequestBody Booking booking) {
+		return bookingService.save(booking);
 	}
 	
-	@PutMapping("/roles/{id}")
-	public Role update(@RequestBody Role role,@PathVariable("id")int id) {
-		return roleService.save(role);
+	@PutMapping("/booking/{id}")
+	public Booking update(@RequestBody Booking booking,@PathVariable("id")int id) {
+		return bookingService.save(booking);
 	}
 	
-	@DeleteMapping("/roles/{id}")
+	@DeleteMapping("/booking/{id}")
 	public void delete(@PathVariable("id")int id) {
-		roleService.deleteById(id);
+		bookingService.deleteById(id);
 	}
 	
 	

@@ -5,19 +5,31 @@ var url = 'http://localhost:8080'
 app.config(function($routeProvider) {
 	$routeProvider
 		.when("/employee-manager", {
-			templateUrl: "../admin/pages/Employeemanager.html",
+			templateUrl: "../admin/pages/account/Employeemanager.html",
 			controller: "account-ctrl"
 		})
 		.when("/dashboard", {
-			templateUrl: "../admin/pages/dashboard.html",
+			templateUrl: "../admin/pages/dashboard/dashboard.html",
+			controller: ""
+		}).
+		when("/profile", {
+			templateUrl: "../admin/pages/account/profile.html",
 			controller: ""
 		}).
 		when("/retain-rooms-manager", {
-			templateUrl: "../admin/pages/RentalRoomsManager.html",
+			templateUrl: "../admin/pages/rooms/RentalRoomsManager.html",
 			controller: "room-ctrl"
+		}).
+		when("/roomtype-manager", {
+			templateUrl: "../admin/pages/rooms/RoomTypeManager.html",
+			controller: "roomtype-manager-ctrl"
+		}).
+		when("/room-manager", {
+			templateUrl: "../admin/pages/rooms/RoomsManager.html",
+			controller: "room-manager-ctrl"
 		})
 		.otherwise({
 			redirectTo: "/dashboard",
-			controller: ""
+			controller: "dashboard-ctrl"
 		})
 })

@@ -1,0 +1,231 @@
+<style>
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+.input-group-text {
+	background-color: #0c2333;
+	color: white;
+}
+</style>
+<div class="container-fluid py-4">
+	<div class="row">
+		<div class="col-12">
+			<div class="card my-4">
+				<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+					<div
+						class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+						<h6 class="text-white text-capitalize ps-3">ROOM MANAGERMENT</h6>
+					</div>
+				</div>
+				<div class="container-fluid px-2 px-md-4">
+					<div class="page-header min-height-100 border-radius-xl mt-4">
+
+					</div>
+					<div class="card card-body mx-3 mx-md-4 mt-n6">
+
+
+						<div class="row">
+
+							<div class="col-12 col-xl-8">
+								<h3 style="text-align: center; font-weight: 800;">ROOM
+									INFORMATION</h3>
+								<form>
+									<div class="card card-plain h-120">
+
+										<div class="card-body p-3">
+
+
+											<div class="form-group col-md-12">
+												<label for="inputEmail4">ID</label> <input type="text"
+													class="form-control" id="inputEmail4" placeholder="Id"
+													ng-model="form.id" disabled="disabled">
+											</div>
+											<div class="form-group col-md-12">
+												<label for="inputPassword4">Name Room</label> <input
+													type="text" class="form-control" id="inputPassword4"
+													placeholder="Name" ng-model="form.name">
+											</div>
+											<div class="form-group col-md-12">
+												<label for="inputCity">Type</label> <select
+													ng-model="form.rtype.type" class="form-control" id="sel1"
+													name="sellist1">
+													<option ng-repeat="rt in roomtype" ng-value="rt.type">{{rt.name}}</option>
+												</select>
+											</div>
+
+											<div class="form-group col-md-12">
+												<label for="inputCity">Price</label>
+												<div class="input-group-prepend">
+													<input type="number" class="form-control"
+														placeholder="Salary" ng-model="form.rtype.price" disabled="disabled"><span
+														class="input-group-text">VND</span>
+												</div>
+
+											</div>
+											<div class="form-group col-md-12">
+												<button type="submit" class="btn btn-outline-secondary"
+													ng-click="reset()">New</button>
+												<button type="submit" class="btn btn-outline-success"
+													ng-click="create()">Save</button>
+												<button type="submit" class="btn btn-outline-dark"
+													ng-click="update()">Update</button>
+												<button type="submit" class="btn btn-outline-danger"
+													ng-click="delete(form.id)">Delete</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="col-lg-4 col-md-4">
+								<h3 style="text-align: center;">ROOMS LIST</h3>
+								<div class="form-group col-md-12">
+									<input type="text" class="form-control" id="inputPassword4"
+										placeholder="Search...">
+								</div>
+								<div style="overflow: auto; height: 500px;">
+									<div class="card" ng-repeat="item in items"
+										ng-click="edit(item)"
+										style="width: 100% !important; margin: 20px auto; padding: 10px;">
+										<div class="card-header p-3 pt-2">
+											<div style="background: #002c3e"
+												class="icon icon-lg icon-shape  text-center border-radius-xl mt-n4 position-absolute">
+												<h5
+													style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h5>
+											</div>
+											<div class="text-end pt-1">
+												<p class="text-sm mb-0 text-capitalize"
+													style="font-weight: bold; font-family: sans-serif;">{{item.rtype.name}}</p>
+												<div ng-if="item.status == 0">
+													<h4 class="mb-0" style="color: green;">Empty room</h4>
+												</div>
+												<div ng-if="item.status == 1">
+													<h4 class="mb-0" style="color: rgb(0, 100, 200);">Received
+														Room</h4>
+												</div>
+												<div ng-if="item.status == 2">
+													<h4 class="mb-0" style="color: rgb(7, 39, 72);">Booking</h4>
+												</div>
+												<div ng-if="item.status == 3">
+													<h4 class="mb-0" style="color: rgb(178, 2, 2);">Canceled</h4>
+												</div>
+												<div ng-if="item.status == 4">
+													<h4 class="mb-0" style="color: rgb(175, 65, 17);">Repairing</h4>
+												</div>
+												<div ng-if="item.status == 5">
+													<h4 class="mb-0" style="color: rgb(153, 0, 110);">Expired</h4>
+												</div>
+											</div>
+										</div>
+										<hr class="dark horizontal my-0">
+										<div class="card-footer p-3">
+											<p class="mb-0" id="timedate">
+												<span style="font-weight: 700;">{{item.rtype.price}}VND</span>&emsp;&emsp;&emsp;&emsp;
+												&emsp; <a href="" ng-click="delete(item)"
+													style="text-decoration: underline; color: red; font-size: 12px; text-transform: capitalize;">Remove</a>
+											</p>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<footer class="footer py-4  ">
+	<div class="container-fluid">
+		<div class="row align-items-center justify-content-lg-between">
+			<div class="col-lg-6 mb-lg-0 mb-4">
+				<div class="copyright text-center text-sm text-muted text-lg-start">
+					©
+					<script>
+                                    document.write(new Date().getFullYear())
+                                </script>
+					, made with <i class="fa fa-heart"></i> by <a href=""
+						class="font-weight-bold" target="_blank">Golden Hotel</a> for a
+					better web.
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<ul
+					class="nav nav-footer justify-content-center justify-content-lg-end">
+					<li class="nav-item"><a href="" class="nav-link text-muted"
+						target="_blank">Golden Hotel</a></li>
+					<li class="nav-item"><a href="" class="nav-link text-muted"
+						target="_blank">About Us</a></li>
+					<li class="nav-item"><a href="/blog"
+						class="nav-link text-muted" target="_blank">Blog</a></li>
+					<li class="nav-item"><a href="/license"
+						class="nav-link pe-0 text-muted" target="_blank">License</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+

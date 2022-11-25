@@ -1,16 +1,22 @@
 package com.example.demo.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,10 +35,12 @@ public class Empolyee {
      @ManyToOne
  	 @JoinColumn(name = "hotelid")
  	 private Hotel hotel;
-     
-     @ManyToOne
- 	 @JoinColumn(name = "roleid")
- 	 private Role role;
+     @JsonIgnore
+ 	@OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+ 	List<Authority> authorities;
+//     @ManyToOne
+// 	 @JoinColumn(name = "roleid")
+// 	 private Role role;
      private String fullname;
  	@DateTimeFormat(pattern="yyyy-MM-dd")    
      private Date dob;
@@ -45,5 +53,6 @@ public class Empolyee {
      private boolean status;
      private String description;
      private String avatar;
+     private String address;
      
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,9 +36,9 @@ public class Booking {
 	@ManyToOne
 	@JoinColumn(name = "guestid")
 	Guest guest;
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id", referencedColumnName = "id")
-    private Room room;
+	@ManyToOne
+	@JoinColumn(name = "roomid")
+    Room room ;
 	private Date date;
 	private String time;
 	private Date arrivaldate;
@@ -46,8 +47,8 @@ public class Booking {
 	private Date estcheckout;
 	private String description;
 	@JsonIgnore
-	  @OneToMany(mappedBy = "booking")
-	  List<Invoice> invoice;
+	@OneToMany(mappedBy = "booking")
+	List<Invoice> invoice;
 	
 
 }
