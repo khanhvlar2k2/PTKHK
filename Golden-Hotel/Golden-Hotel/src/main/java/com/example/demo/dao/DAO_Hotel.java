@@ -13,8 +13,8 @@ import com.example.demo.entity.Room;
 @Repository
 public interface DAO_Hotel extends JpaRepository<Hotel, Integer> {
 
-	  @Query(nativeQuery = true,value="select h.id,h.title,h.address,h.phoneno,h.rating,h.city,r.id,r.name,r.status,r.Roomtype,r.id from Hotel h left join Room r  on r.id = h.id")
-	   public List<Hotel> getFullRoomHottel();
+	  @Query(nativeQuery = true,value="select h.id,h.title,h.address,h.phoneno,h.rating,h.city,r.id,r.name,r.status,r.Roomtype,r.id from Room r  join  Hotel h   on r.id = h.id where h.id=1")
+	   public List<Room> getFullRoomHottel();
 	
 
 }

@@ -23,7 +23,7 @@ public class RestController_Hotel {
         @Autowired private DAO_Room roomService; 
 
         @GetMapping("")
-        public List<Hotel> getAllRooms(){
+        public List<Room> getAllRooms(){
         	return hotelService.getFullRoomHottel();
         }
       

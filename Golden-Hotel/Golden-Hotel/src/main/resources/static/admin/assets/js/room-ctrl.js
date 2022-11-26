@@ -5,7 +5,7 @@ $scope.items = [];
 
 $scope.initialize = function(){
 	//load accounts
-	  $http.get(url+"/rest/hotel").then(resp=>{
+	  $http.get(url+"/rest/rooms").then(resp=>{
 			$scope.items = resp.data;
 			console.log(resp.data);
 
