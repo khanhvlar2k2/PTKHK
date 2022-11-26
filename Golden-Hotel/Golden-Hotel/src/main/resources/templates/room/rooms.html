@@ -27,19 +27,14 @@
                 <div class="input-group w-20">
                     <div class="input-title">Loại Phòng </div>
                     <select class="input-text" name="roomtp">
-                 <option th:each="i : ${types}" th:value="${i.type}" th:text="${i.name}"></option>
-                 <option th:value="${roomtype}" th:text="${roomname}"></option>
+                     <option th:value="${roomtype}" th:text="${roomname}"></option>
+                 	<option th:each="i : ${types}" th:value="${i.type}" th:text="${i.name}"></option>
 
               </select>
                 </div>
                 <div class="input-group w-16">
-                    <div class="input-title">Adults</div>
-                    <select class="input-text" name="quantity">
-                        <option th:value="${adultquantity}"  th:text="${adultquantity}"></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-               			<option value="5">5</option>
-              </select>
+                    <div class="input-title">Số lượng phòng</div>
+                    <input class="input-text" type="number" name="quantity" th:value="${adultquantity}">
                 </div>
                 <div class="input-group w-20">
                     <button style="width: 200px; height: 50px;  background-color: #012449; border: none; color: white!; font-weight: bolder;"><a href="/rooms">TÌm KIếm</a> </button>
@@ -91,8 +86,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="room-rate">
-                                <a  th:href="@{|/rooms/detail-room/${room.rtype.name}|}"  style="text-decoration:underline;">Xem chi tiáº¿t phÃ²ng</a>
-                                <p style="font-size: 18px"  >   [[${room.rtype.price}]] VND/Ä�Ãªm</p>
+                                <a  th:href="@{|/rooms/detail-room/${room.rtype.name}|}"  style="text-decoration:underline;">Xem chi tiết phòng</a>
+                                <p style="font-size: 18px"  >   [[${room.rtype.price}]] VND/Đêm</p>
                                 <a href="/rooms/checkout" class="booknow">Book Now</a>
                             </div>
                         </div>

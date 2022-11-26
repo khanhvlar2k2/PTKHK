@@ -18,13 +18,9 @@
                 <option th:each="i : ${types}" th:value="${i.type}" th:text="${i.name}"></option>
               </select>
                 </div>
-                <div class="input-group w-16">
-                    <div class="input-title">Adults</div>
-                    <select class="input-text" name="quantity">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-              		  <option value="5">5</option>
-              </select>
+             <div class="input-group w-16">
+                    <div class="input-title">Số lượng phòng</div>
+                    <input class="input-text" type="number" name="quantity">
                 </div>
                 <div class="input-group w-20">
                     <button style="width: 200px; height: 50px; margin-top: 35px; background-color: #012449; border: none; color: white; font-weight: bolder;">TÌM KIẾM </button>
