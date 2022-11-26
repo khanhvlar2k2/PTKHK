@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class Booking {
     Room room ;
 	private Date date;
 	private String time;
-	private Date arrivaldate;
-	private Date departuredate ;
+	private LocalDateTime arrivaldate;
+	private LocalDateTime departuredate ;
 	private Date estcheckin;
 	private Date estcheckout;
 	private String description;

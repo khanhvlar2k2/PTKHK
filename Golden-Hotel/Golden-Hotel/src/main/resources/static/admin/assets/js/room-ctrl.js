@@ -9,6 +9,8 @@ $scope.initialize = function(){
 			$scope.items = resp.data;
 			console.log(resp.data);
 
+			console.log(resp.data[7].booking[0].guest.firstname);
+
 		})
 			
 	}

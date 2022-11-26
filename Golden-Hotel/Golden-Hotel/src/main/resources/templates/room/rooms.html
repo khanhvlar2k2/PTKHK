@@ -47,8 +47,11 @@
      
       <div class="container " >
       <div class="section-header room-title">
-                <h2  >Our Rooms</h2>
+               <h2 style="color: yellow">Our Rooms</h2>
+                <h1  style="color: yellow">[[${messagesss}]]</h1>
+                
             </div>
+             
              <div class="col-md-12 list-room" th:each="room : ${rooms}"> 
                       <div class="room-info">
                         <div class="col-md-3 ">
@@ -78,6 +81,8 @@
                                     <li><i class="fa fa-wifi" ></i>  Free Wifi</li>
                                     <li><i class="fa fa-television" aria-hidden="true"  > </i> Cable TV channel  </li>
                                     <li><i class="fa fa-check"></i> Free swimming pool  </li>
+                                     <li><i class="fa fa-check">Room left: </i>[[${qleft}]] </li>
+                                    
                                 </ul>
 
                                                            

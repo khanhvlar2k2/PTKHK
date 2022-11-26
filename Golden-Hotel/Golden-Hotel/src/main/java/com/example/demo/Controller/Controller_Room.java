@@ -97,11 +97,20 @@ public class Controller_Room {
 		model.addAttribute("types", rtyp);
 		model.addAttribute("adultquantity", text2);
 		model.addAttribute("roomtype", text1);
+		List<Room> room = new ArrayList<Room>();
+		List<Room> room2  =  dao.findbyCondition(name);
+		room = dao.findRoom(roomtype.getType());
+		if(room.size()+1>0 && room.size()+1>Integer.parseInt(text2)) {
+			model.addAttribute("rooms",room2);
+			model.addAttribute("qleft",room.size()+1);
+		}else {
+			model.addAttribute("messagesss","No Room are available");
+
+		}
+
 
 	}
 	protected void loadroom(Model model) {
-		
-		model.addAttribute("rooms", dao.findAllData());
 
 	}
 }
