@@ -2,8 +2,16 @@ app.controller("account-ctrl", function($scope, $http, $location) {
  $scope.items = [];
  $scope.form = {};
  $scope.hotels = [];
+ $scope.roles = [];
+ $scope.user = {};
+ $scope.selection =[];
+ $scope.authorities = [];
 
  $scope.initialize = function(){
+	//load all roles
+		$http.get("/rest/roles").then(resp=>{
+			$scope.roles = resp.data;
+		});
 	//load accounts
 	  $http.get("/rest/accounts").then(resp=>{
 			$scope.items = resp.data;
@@ -13,8 +21,40 @@ app.controller("account-ctrl", function($scope, $http, $location) {
             $scope.hotels = resp.data;
         console.log(resp.data);	
         });
-		
-		
+       //load authorities of staffs and directors
+		$http.get("/rest/authorities?admin=true").then(resp=>{
+			$scope.authorities = resp.data;
+		}).catch(err=>{
+			$location.path("/unauthorized");
+		})
+			
+	}
+	//Chọn roles
+	$scope.toggleRole = function(role){
+		var compareElement = -1;
+		var idx = $scope.selection.indexOf(role);
+		console.log(idx);
+		//Currently Selected
+		if(idx>-1){
+			$scope.selection.splice(idx,1);
+		}
+		//Is newly added
+		else{
+			$scope.selection.push(role);
+		}
+	}
+	//Load Roles on form by clicking Edit
+	$scope.getOneByRole = function(id){
+		$http.get(`/rest/authoritiesOne?id=${id}`).then(resp=>{
+			$scope.selection = [];
+			$scope.roles.forEach(e=>{
+				resp.data.forEach(e1=>{
+					if(e.name == e1.role.name){
+						$scope.selection.push(e);
+					}
+				})
+			})
+		})
 	}
 		//reset form
 	$scope.reset = function(){
@@ -29,8 +69,18 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/accountsManage`,item).then(resp=>{
 			$scope.items.push(resp.data);
-			console.log(resp.data);			
-			$scope.reset();
+			console.log(resp.data);
+			//thêm phân quyền
+			$scope.selection.forEach(r=>{
+				var authority = {employee:item,role:r};
+				$http.post(`/rest/authorities`,authority).then(resp=>{
+					$scope.items.push(resp.data);
+				}).catch(err=>{
+					console.log("Error ",err);
+				})
+			})
+			$scope.reset();			
+			
 			
 		}).catch(err=>{
 			console.log("Error ",err);
@@ -44,6 +94,19 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 			var index = $scope.items.findIndex(p=>p.id == item.id);
 			$scope.items[index] = item;				
 			console.log(resp.data);
+			//xoá toàn bộ roles của user hiện tại
+			$http.delete(`/rest/authoritiesOne/${item.id}`).then(resp=>{
+			//sau khi xoá thì thêm mới lại role đã chọn
+				$scope.selection.forEach(r=>{
+					var authority = {employee:item,role:r};
+					$http.post(`/rest/authorities`,authority).then(resp=>{
+						$scope.items.push(resp.data);
+					}).catch(err=>{
+						console.log("Error ",err);
+					})
+				})
+			})
+			$scope.reset();
 		}).catch(err=>{
 			
 			console.log("Error ",err);
@@ -52,9 +115,11 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 		
 		
 	}
+	
 //Hiển thị lên form
     $scope.edit = function(item){
 		$scope.form = angular.copy(item);
+		$scope.getOneByRole(item.id);
 
 		
     }
@@ -63,8 +128,7 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 		$http.delete(`/rest/accounts/${item.id}`).then(resp=>{
 			var index = $scope.items.findIndex(p=>p.id == item.id);
 			$scope.items.splice(index,1);
-			$scope.reset();
-			
+			$scope.reset();		
 			console.log(resp.data);
 		}).catch(err=>{
 			

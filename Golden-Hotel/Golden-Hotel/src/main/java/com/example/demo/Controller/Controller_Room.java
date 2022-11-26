@@ -76,7 +76,7 @@ public class Controller_Room {
 			}
 		}
 		if (dataDate.keySet() != null && dataDate.values() != null 
-				&& !dataDate.keySet().toString().trim().equalsIgnoreCase("[]") && dataDate.values().toString().trim().equalsIgnoreCase("[]")) {
+				&& !dataDate.keySet().toString().trim().equalsIgnoreCase("[]") && !dataDate.values().toString().trim().equalsIgnoreCase("[]")) {
 			String date1 = dataDate.keySet().toString();
 			date1 = date1.replace("[", "");
 			date1 = date1.replace("]", "");

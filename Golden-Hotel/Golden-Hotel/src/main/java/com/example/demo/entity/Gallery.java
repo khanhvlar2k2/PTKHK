@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GeneratorType;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name="Gallery")
+@Data
 public class Gallery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

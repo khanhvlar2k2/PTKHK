@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +27,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="Hotel")
 @Data
+@JsonIgnoreType
 public class Hotel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +38,7 @@ public class Hotel {
 	private String city;
 	private int rating;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "hotel")
+	@OneToMany(mappedBy = "hotel1",fetch = FetchType.LAZY)
 	List<Room> room;
 	
 	@JsonIgnore

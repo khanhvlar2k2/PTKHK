@@ -9,9 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
@@ -19,14 +21,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name="Role")
+@Data
 public class Role {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	String title;
-	String description;
+	@Id	
+	private String id;
+	private String name;
 	@JsonIgnore
 	@OneToMany(mappedBy = "role")
-	List<Empolyee> empolyee;
+	List<Authority> authorities;
 
 }
