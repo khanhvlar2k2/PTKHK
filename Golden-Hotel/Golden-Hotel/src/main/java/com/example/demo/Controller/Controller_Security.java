@@ -82,7 +82,7 @@ public class Controller_Security {
 	}
 
 	@PostMapping("/forget-pass")
-	public String postforgotPass(Model model, @RequestParam("email") String email,Empolyee account) {
+	public String postforgotPass(Model model, @RequestParam("emailff") String email,Empolyee account) {
 		try {
 			  account = serviceAcc.finbyEmailname(email);	
 				if (account.getEmail().equals(email)) {
@@ -231,6 +231,8 @@ public class Controller_Security {
 					);	
 					model.addAttribute("messageS","Email sent successfully. Please check your email for password !!");
 
+				}else {
+					model.addAttribute("message","Please enter input email!!");
 				}
 			
 		} catch (Exception e) {

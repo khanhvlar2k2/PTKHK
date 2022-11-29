@@ -1,43 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+<html lang="en">
 
 <head>
-     <th:block th:replace="/layout/head.html"></th:block>
+    <meta charset="utf-8">
+    <title>GOLDEN HOTEL-BOOKING</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-    <link  th:href="@{/css/hover-rooms.css}" rel="stylesheet">
-   <link  th:href="@{/css/rooms.css}" rel="stylesheet">
+    <!-- Favicons -->
+    <link href="img/favicon.ico" rel="icon">
+    <link href="img/apple-favicon.png" rel="apple-touch-icon">
+
     <!-- Google Fonts -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style type="text/css">
-      #bookingForm{
-           background-color: white !important;
-      
-      
-      }
-      input{
-          height: 40px !important;
-          border-radius: 20px !important; 
-           font-size: 18px;
-           font-weight: 500 !important;
-      }
-      
-  </style>
-    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <!-- Vendor CSS File -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/slick/slick.css" rel="stylesheet">
+    <link href="vendor/slick/slick-theme.css" rel="stylesheet">
+    <link href="vendor/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Main Stylesheet File -->
+    <link href="css/hover-style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        label {
+            font-size: 14px !important;
+            font-weight: 700;
+        }
+        
+        input {
+            height: 40px !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
 <body>
-      <header id="header">
-        
-       <th:block th:replace="/layout/nav2.html"></th:block>
-
-    </header>
     <div id="booking">
         <div class="container">
             <div class="section-header">
                 <h2>Room Booking</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in mi libero. Quisque convallis, enim at venenatis tincidunt.
+                </p>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-8">
                     <div class="booking-form">
                         <div id="success"></div>
                         <form name="sentMessage" id="bookingForm" novalidate="novalidate">
@@ -55,42 +68,106 @@
                             </div>
                             <div class="form-row">
                                 <div class="control-group col-md-6">
-                                    <label>Mobile</label>
-                                    <input type="text" class="form-control" id="mobile" placeholder=" +1 234 567 8900" required="required" data-validation-required-message="Please enter your mobile number" />
+                                    <label>Arrival Date</label>
+                                    <input type="date" class="form-control datetimepicker-input" id="date-1" data-toggle="datetimepicker" data-target="#date-1" placeholder="E.g. MM/DD/YYYY" required="required" data-validation-required-message="Please enter date" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group col-md-6">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder=" email@example.com" required="required" data-validation-required-message="Please enter your email" />
+                                    <label>Departure Date</label>
+                                    <input type="date" class="form-control datetimepicker-input" id="date-2" data-toggle="datetimepicker" data-target="#date-2" placeholder="E.g. MM/DD/YYYY" required="required" data-validation-required-message="Please enter date" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="control-group col-md-6">
-                                    <label>Check-In</label>
-                                    <input  type="datetime-local" value="yyyy-mm-ddT13:00" class="form-control datetimepicker-input" id="date-1"  data-toggle="datetimepicker" data-target="#date-1" placeholder="E.g. MM/DD/YYYY" required="required" data-validation-required-message="Please enter date">
-
+                                <div class="control-group col-md-12">
+                                    <label>Mobile</label>
+                                    <input type="text" class="form-control" id="mobile" placeholder="+1 234 567 8900" required="required" data-validation-required-message="Please enter your mobile number" />
                                     <p class="help-block text-danger"></p>
                                 </div>
-                                <div class="control-group col-md-6">
-                                    <label>Check-Out</label>
-                                    <input  type="datetime-local" value="yyyy-mm-ddT13:00" class="form-control datetimepicker-input" id="date-2" data-toggle="datetimepicker" data-target="#date-2" placeholder="E.g. MM/DD/YYYY" required="required" data-validation-required-message="Please enter date" />
+                                <div class="control-group col-md-12">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="email@example.com" required="required" data-validation-required-message="Please enter your email" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
-                            
-                            <div class="control-group col-md-12">
-                                <label>Address</label>
-                                
+                            <div class="control-group">
+                                <label>Special Request</label>
                                 <input type="text" class="form-control" id="request" placeholder="Special Request" required="required" data-validation-required-message="Please enter your special request" />
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <div class="control-group col-md-12">
-                               <div class="button"><button type="submit" id="bookingButton">Book Now</button></div>
-                            </div>
-                            
-
+                            <div class="button"><button type="submit" id="bookingButton">Book Now</button></div>
                         </form>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h5>My Room</h5>
+                    <img src="/images/04.png" class="col-md-10 ml-5" alt="">
+                    <h6>
+                        8 tháng 12 2022 - 9 tháng 12 2022(1 Đêm)
+                    </h6>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                        </svg>
+                    <label for="">
+                            Bữa sáng
+                        </label>
+                    <br>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                        </svg>
+                    <label for="">
+                            Bãi đậu xe
+                        </label>
+                    <br>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                        </svg>
+                    <label for="">
+                            Thuê xe đạp
+                        </label>
+                    <br>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                        </svg>
+                    <label for="">
+                            Nước nóng
+                        </label>
+                    <br>
+                    <a href="">Không hoàn tiền</a>
+                    <div>
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">Một phòng</label>
+                                <br> 2 người lớn
+                            </div>
+                            <div class="col-md-6"><label class="labels">Tổng số giường</label>
+                                <br> 2 giường đơn
+                            </div>
+
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">Date</label>
+                                <br> 01-01-2022
+                            </div>
+                            <div class="col-md-6"><label class="labels">Time</label>
+                                <br> 2h
+                            </div>
+
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">Arrival Date</label>
+                                <br> 01-01-2022
+                            </div>
+                            <div class="col-md-6"><label class="labels">Departure Date</label>
+                                <br> 01-01-2022
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">Giá tiền</label>
+                            </div>
+                            <div class="col-md-6"><label class="labels">260.000</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,7 +175,46 @@
     </div>
     <!-- Booking Section End -->
 
-    
+    <!-- Footer Section Start -->
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                </div>
+                <div class="col-12">
+                    <p>Copyright &#169; 2045 <a href="">Your Site Name</a> All Rights Reserved.</p>
+
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Section End -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Vendor JavaScript File -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-migrate.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/easing/easing.min.js"></script>
+    <script src="vendor/stickyjs/sticky.js"></script>
+    <script src="vendor/superfish/hoverIntent.js"></script>
+    <script src="vendor/superfish/superfish.min.js"></script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/slick/slick.min.js"></script>
+    <script src="vendor/tempusdominus/js/moment.min.js"></script>
+    <script src="vendor/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="vendor/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Booking Javascript File -->
+    <script src="js/booking.js"></script>
+    <script src="js/jqBootstrapValidation.min.js"></script>
+
+    <!-- Main Javascript File -->
+    <script src="js/main.js"></script>
 </body>
 
 </html>
