@@ -5,7 +5,7 @@ var url = 'http://localhost:8080'
 app.config(function($routeProvider) {
 	$routeProvider
 		.when("/employee-manager", {
-			templateUrl: "../admin/pages/account/Employeemanager.html",
+			templateUrl: "../admin/pages/account/account.html",
 			controller: "account-ctrl"
 		})
 		.when("/dashboard", {
@@ -27,7 +27,10 @@ app.config(function($routeProvider) {
 		when("/room-manager", {
 			templateUrl: "../admin/pages/rooms/RoomsManager.html",
 			controller: "room-manager-ctrl"
-		})
+		}).when("/unauthorized", {
+            templateUrl: "../admin/pages/account/unauthorized.html",
+            controller: "authority-ctrl"
+        })
 		.otherwise({
 			redirectTo: "/dashboard",
 			controller: "dashboard-ctrl"

@@ -35,7 +35,7 @@ public class RestController_Booking {
 	
 	@GetMapping("/booking/{id}")
 	public Booking getOne(@PathVariable("id")int id) {
-		return bookingService.getById(id);
+		return bookingService.getOne(id);
 	}
 	
 	@PostMapping("/booking")

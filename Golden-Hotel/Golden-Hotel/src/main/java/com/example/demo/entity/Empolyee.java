@@ -8,13 +8,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,17 +29,11 @@ public class Empolyee {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private int id;
-     @ManyToOne
- 	 @JoinColumn(name = "hotelid")
- 	 private Hotel hotel;
      @JsonIgnore
- 	@OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
- 	List<Authority> authorities;
-//     @ManyToOne
-// 	 @JoinColumn(name = "roleid")
-// 	 private Role role;
+ 	 @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+ 	 List<Authority> authorities;
      private String fullname;
- 	@DateTimeFormat(pattern="yyyy-MM-dd")    
+ 	 @DateTimeFormat(pattern="yyyy-MM-dd")    
      private Date dob;
      private boolean gender;
      private String phoneno;
@@ -54,5 +45,9 @@ public class Empolyee {
      private String description;
      private String avatar;
      private String address;
+     @JsonIgnore
+  	 @OneToMany(mappedBy = "employee")
+  	 List<Booking> booking;
+	
      
 }

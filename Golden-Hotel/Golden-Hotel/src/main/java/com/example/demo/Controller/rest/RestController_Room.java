@@ -1,6 +1,8 @@
 package com.example.demo.Controller.rest;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.example.demo.dao.DAO_Room;
-import com.example.demo.entity.Empolyee;
-import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Room;
 
 
@@ -28,6 +28,7 @@ public class RestController_Room {
           
         @GetMapping("/rooms")
         public List<Room> getAllRooms(){
+            
         	return roomService.findAll();
         }
         @PostMapping("/roomsManager")
@@ -42,4 +43,14 @@ public class RestController_Room {
         public void delete(@PathVariable("id") int id){
         	 roomService.deleteById(id);
         }
+        
+        
+        @GetMapping("rooms/count")
+    	public Map<String,Object> showCount(){
+    		Map<String,Object> map = new HashMap<>();  		
+    		map.put("count", roomService.count());
+    		return map;
+    	}
+                   	                               
+        
 }
