@@ -2,23 +2,32 @@
 <html lang="en" xmlns:th="http://wwww.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="/admin/assets/img/logo.png">
-    <link rel="icon" type="image/png" href="/admin/assets/img/logo.png">
-    <title>Golden Hotel Manager </title>
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-    <!-- Nucleo Icons -->
-    <link href="/admin/assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="/admin/assets/css/nucleo-svg.css" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <!-- CSS Files -->
-    <link id="pagestyle" href="/admin/assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="/admin/assets/img/logo.png">
+<link rel="icon" type="image/png" href="/admin/assets/img/logo.png">
+<title>Golden Hotel Manager</title>
+<!--     Fonts and icons     -->
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+<!-- Nucleo Icons -->
+<link th:href="@{|/css/security/css/nucleo-icons.css}" rel="stylesheet" />
+<link th:href="@{|/css/security/css/nucleo-svg.css}" rel="stylesheet" />
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/42d5adcbca.js"
+	crossorigin="anonymous"></script>
+<!-- Material Icons -->
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+	rel="stylesheet">
+<!-- CSS Files -->
+<link id="pagestyle"
+	th:href="@{|/css/security/css/material-dashboard.css?v=3.0.4|}"
+	rel="stylesheet" />
 </head>
+
 
 <body class="bg-gray-200">
 
@@ -35,19 +44,19 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form role="form" class="text-start">
-                                    <label for="">Please enter your email to resend your new password</label>
+                                <form class="text-start" action="/security/forget-pass" method="post">
+                                    <label for="">Please enter your email to resend your new password <span style="color: green;">[[${messageS}]]</span><span style="color: red;">[[${message}]]</span> </label>
                                     <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" class="form-control">
+                                        
+                                        <input type="email" placeholder="Email" name="email" class="form-control" required="required" >
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Send</button>
+                                        <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Send</button>
                                     </div>
                                     <p class="mt-4 text-sm text-center">
                                         Don't have an account?
-                                        <a th:href="@{/security/login}s" class="text-primary text-gradient font-weight-bold">Sign in</a>
+                                        <a th:href="@{/security/login/formz}" class="text-primary text-gradient font-weight-bold">Sign in</a>
                                     </p>
                                 </form>
                             </div>
@@ -59,11 +68,11 @@
         </div>
     </main>
     <!--   Core JS Files   -->
-    <script src="/admin/assets/js/core/popper.min.js"></script>
-    <script src="/admin/assets/js/core/bootstrap.min.js"></script>
-    <script src="/admin/assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="/admin/assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script>
+  	<script th:href="@{|/css/security/core/popper.min.js}"></script>
+	<script th:href="@{|/css/security/core/bootstrap.min.js}"></script>
+	<script th:href="@{|/css/security/plugins/perfect-scrollbar.min.js}"></script>
+	<script th:href="@{|/css/security//plugins/smooth-scrollbar.min.js}"></script>
+	<script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
             var options = {
@@ -72,10 +81,11 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="/admin/assets/js/material-dashboard.min.js?v=3.0.4"></script>
+	<!-- Github buttons -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+	<script
+		th:href="@{|/css/security/js/material-dashboard.min.js?v=3.0.4}"></script>
 </body>
 
 </html>

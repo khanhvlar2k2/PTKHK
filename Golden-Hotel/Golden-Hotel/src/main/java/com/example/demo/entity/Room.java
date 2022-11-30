@@ -29,14 +29,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class Room {
 	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 int id;
 	 String photo;
 	 int status;
-	 
-	 @ManyToOne
-	 @JoinColumn(name = "HotelID")
-	 Hotel hotel1;
 	 
 	 @ManyToOne
 	 @JoinColumn(name = "roomtype")

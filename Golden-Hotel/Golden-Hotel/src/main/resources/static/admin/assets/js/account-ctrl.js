@@ -3,7 +3,6 @@ app.controller("account-ctrl", function($scope, $http, $location) {
  $scope.form = {};
  $scope.hotels = [];
  $scope.roles = [];
- $scope.user = {};
  $scope.selection =[];
  $scope.authorities = [];
 
@@ -11,16 +10,9 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 	//load all roles
 		$http.get("/rest/roles").then(resp=>{
 			$scope.roles = resp.data;
+			console.log(resp.data);	
 		});
-	//load accounts
-	  $http.get("/rest/accounts").then(resp=>{
-			$scope.items = resp.data;
-		})
-	       ;     //load workplace
-        $http.get("/rest/workplace").then(resp => {
-            $scope.hotels = resp.data;
-        console.log(resp.data);	
-        });
+	   $scope.loadaccount(); //load workplace
        //load authorities of staffs and directors
 		$http.get("/rest/authorities?admin=true").then(resp=>{
 			$scope.authorities = resp.data;
@@ -28,6 +20,13 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 			$location.path("/unauthorized");
 		})
 			
+	}
+	$scope.loadaccount =function(){
+		//load accounts
+		$http.get("/rest/accounts").then(resp=>{
+			$scope.items = resp.data;
+			console.log(resp.data);	
+		})
 	}
 	//Chọn roles
 	$scope.toggleRole = function(role){
@@ -64,6 +63,7 @@ app.controller("account-ctrl", function($scope, $http, $location) {
              gender:false
 		}
     }
+
 //Thêm account
     $scope.create = function(){
 		var item = angular.copy($scope.form);
@@ -74,19 +74,20 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 			$scope.selection.forEach(r=>{
 				var authority = {employee:item,role:r};
 				$http.post(`/rest/authorities`,authority).then(resp=>{
-					$scope.items.push(resp.data);
+					$scope.items.push(resp.data);			
 				}).catch(err=>{
 					console.log("Error ",err);
 				})
 			})
-			$scope.reset();			
-			
+			$scope.initialize();
+			$scope.reset();
 			
 		}).catch(err=>{
 			console.log("Error ",err);
-			
+
 		})
     }
+
  //Update account
     $scope.update = function(){
 		var item = angular.copy($scope.form);
@@ -106,12 +107,13 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 					})
 				})
 			})
+			$scope.initialize();
 			$scope.reset();
 		}).catch(err=>{
 			
 			console.log("Error ",err);
 		})
-		%scope.reset();
+		$scope.reset();
 		
 		
 	}

@@ -37,6 +37,36 @@ public class ServiceImpl_Account implements Service_Account{
 
 
 
+	@Override
+	public Empolyee finbyEmail(String email) {
+		return accDao.finbyEmail(email);
+	}
+
+	@Override
+	public List<Empolyee> getAccountByRole(String role) {
+		return accDao.findAll().stream().filter(acc-> 
+		acc.getAuthorities().stream().anyMatch(au -> au.getRole().getId().equals(role))).collect(Collectors.toList());
+	}
+
+
+
+	@Override
+	public void deleteById(Integer id) {
+		accDao.deleteById(id);
+	}
+
+
+
+	@Override
+	public List<Empolyee> getAdministrators() {
+		return accDao.getAdministrators();
+	}
+
+
+
+
+
+
 	
 
 

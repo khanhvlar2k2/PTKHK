@@ -1,20 +1,24 @@
-
+<style>
+.modal-content {
+	text-align: left;
+}
+</style>
 <div class="container-fluid py-4">
 	<div class="row">
-		<div class=" col-sm-1 fix-change">
+		<div class=" col-sm-1 fix-change" ng-click="initialize()">
 			<div class="card card-fix">
 				<div class="text-container">
 					<h6 class="text-change">
-						<a style="color: black;" href="">ALL(100)</a>
+						<a style="color: black;" href="">ALL({{courm.count}})</a>
 					</h6>
 				</div>
 			</div>
 		</div>
-		<div class=" col-sm-1 fix-change">
+		<div class=" col-sm-1 fix-change" ng-click="dataStatus()">
 			<div class="card card-fix" style="background: rgb(8, 156, 8);">
 				<div class="text-container">
 					<h6 class="text-change">
-						<a href="">Empty(80)</a>
+						<a href="">Empty({{orz[0]}})</a>
 					</h6>
 				</div>
 			</div>
@@ -23,7 +27,7 @@
 			<div class="card card-fix" style="background: rgb(0, 100, 200);">
 				<div class="text-container">
 					<h6 class="text-change1">
-						<a href="">Received Room(5)</a>
+						<a href="">Received Room({{orz[1]}})</a>
 					</h6>
 				</div>
 			</div>
@@ -32,7 +36,7 @@
 			<div class="card card-fix" style="background: rgb(7, 39, 72);">
 				<div class="text-container">
 					<h6 class="text-change">
-						<a href="">Booking(5)</a>
+						<a href="">Booking({{orz[2]}})</a>
 					</h6>
 				</div>
 			</div>
@@ -41,7 +45,7 @@
 			<div class="card card-fix" style="background: rgb(178, 2, 2);">
 				<div class="text-container">
 					<h6 class="text-change">
-						<a href="">Canceled(2)</a>
+						<a href="">Canceled({{orz[3]}})</a>
 					</h6>
 				</div>
 			</div>
@@ -50,7 +54,7 @@
 			<div class="card card-fix" style="background: rgb(175, 65, 17);">
 				<div class="text-container">
 					<h6 class="text-change">
-						<a href="">Repairing(0)</a>
+						<a href="">Repairing({{orz[4]}})</a>
 					</h6>
 				</div>
 			</div>
@@ -59,7 +63,7 @@
 			<div class="card card-fix" style="background: rgb(153, 0, 110);">
 				<div class="text-container">
 					<h6 class="text-change">
-						<a href="">Expired(0)</a>
+						<a href="">Expired({{orz[5]}})</a>
 					</h6>
 				</div>
 			</div>
@@ -70,118 +74,309 @@
 	</div>
 	<div class="row">
 
-		<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 fixtop" 
-			ng-repeat="item in items"  >
-			<div class="card"  ng-if="item.status == 0" >
+		<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 fixtop"
+			ng-repeat="item in items">
+			<div class="card" ng-if="item.status == 0">
 				<div class="card-header p-3 pt-2">
 					<div
 						class="icon icon-lg icon-shape fix-gradient  text-center border-radius-xl mt-n4 position-absolute">
-						<h4 style="text-align: center; margin: 15px auto; color: white;" >{{item.name}}</h4>
+						<h4 style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h4>
 					</div>
 					<div class="text-end pt-1">
-						<p class="text-sm mb-0 text-capitalize">Today's empty room</p>
-						<a href="../pages/tables.html">
-							<h4 class="mb-0"></h4>
+						<p class="text-sm mb-0 text-capitalize">{{item.rtype.name}}</p>
+						<a href="" data-toggle="modal" data-target="#exampleModalLong"
+							ng-click="edit(item)">
+							<h4 class="mb-0">Empty</h4>
 						</a>
+						<div class="modal fade" id="exampleModalLong" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLongTitle"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">ROOM
+											RENTAL INFORMATION({{form.name}})</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<form class="col-md-11" style="margin: 0 auto;">
+											<div class="form-row">
+												<div class="form-group col-md-6">
+
+													<input type="text" class="form-control" id="inputEmail4"
+														placeholder="Fist Name"
+														>
+												</div>
+												<div class="form-group col-md-6">
+													<input type="text" class="form-control" id="inputEmail4"
+														placeholder="Last Name"
+														>
+												</div>
+                                                
+												<div class="form-group col-md-12">
+													<input type="email" class="form-control" id="inputEmail4"
+														placeholder="Email" >
+												</div>
+												<div class="form-group col-md-8">
+													<input type="date" class="form-control" id="inputEmail4"
+														>
+												</div>
+												<div class="form-check col-md-4">
+												<label
+														class="form-check-label"> <input type="radio"
+														class="form-check-input" name="gender" ng-value="false"
+														>Famale
+
+													</label> <label class="form-check-label"> <input
+														type="radio" class="form-check-input" name="gender"
+														>Male
+
+													</label>
+													</div>
+												<div class="form-group col-md-5">
+													<input type="text" class="form-control" id="inputEmail4"
+														placeholder="Phone"
+														ng-model="form.booking[0].guest.phoneno">
+												</div>
+												<div class="form-group col-md-7">
+													<input type="text" class="form-control" id="inputEmail4"
+														placeholder="CMND">
+												</div>
+
+												<div class="form-group col-md-6">
+												 Arrival date:
+													<input type="date" class="form-control" id="inputAddress"
+														placeholder="1234 Main St">
+												</div>
+												<div class="form-group col-md-6">
+												 Date of department:
+													<input type="date" class="form-control" id="inputAddress"
+														placeholder="1234 Main St">
+												</div>
+												<div class="form-group col-md-12">
+													<label for="exampleFormControlTextarea1">Address</label>
+													<textarea class="form-control"
+														id="exampleFormControlTextarea1" rows="2"></textarea>
+												</div>
+											</div>
+
+
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary">Save</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 				<hr class="dark horizontal my-0">
 				<div class="card-footer p-3">
 					<p class="mb-0" id="timedate">
-						<span>05-11-2022</span>
+						<span style="font-weight: 500;">{{date |
+							date:'dd/MM/yyyy'}}</span>
 					</p>
 				</div>
 			</div>
-			<div class="card" ng-if="item.status == 1"  >
+			<div class="card" ng-if="item.status == 1">
 				<div class="card-header p-3 pt-2">
-					<div style="background-color:  rgb(0, 100, 200)!important;"
+					<div style="background-color: rgb(0, 100, 200) !important;"
 						class="icon icon-lg icon-shape fix-gradient  text-center border-radius-xl mt-n4 position-absolute">
 						<h4 style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h4>
 					</div>
 					<div class="text-end pt-1">
-						<p class="text-sm mb-0 text-capitalize">Today's empty room</p>
-						<a href="../pages/tables.html">
-							<h4 class="mb-0">{{booking.id}}</h4>
+						<p class="text-sm mb-0 text-capitalize">{{item.rtype.name}}</p>
+						<a href="">
+							<h4 class="mb-0" data-toggle="modal"
+								data-target=".bd-example-modal-lg" ng-click="edit(item)">{{item.booking[0].guest.firstname}}&nbsp{{item.booking[0].guest.lastname}}</h4>
 						</a>
+						<div class="modal fade bd-example-modal-lg" tabindex="-1"
+							role="dialog" aria-labelledby="myLargeModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">ROOM
+											REGISTRATION FORM({{form.name}})</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<form class="row col-md-12" style="margin-top: 10px;">
+										<div class="col-md-6"
+											style="margin: 10px; padding: 20px; box-shadow: 0 0 3px 2px #e7eff6; border-radius: 5px">
+											<h6 style="text-align: center">GUEST INFORMATION</h6>
+											<div class="form-row">
+
+												<div class="form-group col-md-6">
+													Frist name <input type="text" class="form-control"
+														id="inputEmail4" placeholder="Fist Name"
+														ng-model="form.booking[0].guest.firstname">
+												</div>
+												<div class="form-group col-md-6">
+													Last name <input type="text" class="form-control"
+														id="inputEmail4" placeholder="Last Name"
+														ng-model="form.booking[0].guest.lastname">
+												</div>
+
+												<div class="form-group col-md-12">
+													Email <input type="email" class="form-control"
+														id="inputEmail4" placeholder="Email"
+														ng-model="form.booking[0].guest.email">
+												</div>
+												<div class="form-group col-md-6">
+													Phone <input type="text" class="form-control"
+														id="inputEmail4" placeholder="CMND"
+														ng-model="form.booking[0].guest.phoneno">
+												</div>
+												<div class="form-group col-md-6">
+													CMND <input type="text" class="form-control"
+														id="inputEmail4" placeholder="CMND"
+														ng-model="form.booking[0].guest.pid">
+												</div>
+											</div>
+											<div class="form-row">
+												<div class="form-group col-md-7">
+													BrithDay <input type="datetime" class="form-control"
+														id="inputAddress"
+														ng-model="form.booking[0].guest.dob | date:'dd/MM/yyyy'">
+												</div>
+
+												<div class="form-check col-md-5">
+													<span>Gender</span> <br> <label
+														class="form-check-label"> <input type="radio"
+														class="form-check-input" name="gender" ng-value="false"
+														ng-model="form.booking[0].guest.gender">Famale
+
+													</label> <label class="form-check-label"> <input
+														type="radio" class="form-check-input" name="gender"
+														ng-value="true" ng-model="form.booking[0].guest.gender">Male
+
+													</label>
+												</div>
+												<div class="form-group col-md-12">
+													<label for="exampleFormControlTextarea1">Address</label>
+													<textarea class="form-control"
+														id="exampleFormControlTextarea1" rows="2"></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-5">
+											<h6 style="text-align: center">BOOKING INFORMATION</h6>
+											<div class="form-row">
+												<div class="form-group col-md-3">ID:
+													{{form.booking[0].id}}</div>
+												<div class="form-group col-md-8">Type:
+													{{form.rtype.name}}</div>
+
+												<div class="form-group ">Arrival date:
+													{{item.booking[0].arrivaldate | date:'dd/MM/yyyy'}}</div>
+												<div class="form-group ">Date of department:
+													{{item.booking[0].departuredate | date:'dd/MM/yyyy'}}</div>
+												<div class="form-group col-md-7">Total money: 300$</div>
+											</div>
+										</div>
+									</form>
+                                         <div class="modal-footer">
+										<button type="button" class="btn btn-primary">Payment</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<hr class="dark horizontal my-0">
 				<div class="card-footer p-3">
 					<p class="mb-0" id="timedate">
-						<span>05-11-2022</span>
+						<span style="font-weight: 500;">{{item.booking[0].arrivaldate
+							| date:'dd/MM/yyyy'}}</span> <span style="color: red; font-weight: 700;">-</span>
+						<span style="font-weight: 500;">{{item.booking[0].departuredate
+							| date:'dd/MM/yyyy'}}</span>
 					</p>
 				</div>
 			</div>
-			<div class="card" ng-if="item.status == 2" >
+			<div class="card" ng-if="item.status == 2">
 				<div class="card-header p-3 pt-2">
-					<div style="background-color:  rgb(7, 39, 72)!important;"
+					<div style="background-color: rgb(7, 39, 72) !important;"
 						class="icon icon-lg icon-shape fix-gradient  text-center border-radius-xl mt-n4 position-absolute">
 						<h4 style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h4>
 					</div>
 					<div class="text-end pt-1">
-						<p class="text-sm mb-0 text-capitalize">Today's empty room</p>
+						<p class="text-sm mb-0 text-capitalize">{{item.rtype.name}}</p>
 						<a href="../pages/tables.html">
-							<h4 class="mb-0"></h4>
+							<h4 class="mb-0">{{item.booking[0].guest.firstname}}&nbsp{{item.booking[0].guest.lastname}}</h4>
 						</a>
 					</div>
 				</div>
 				<hr class="dark horizontal my-0">
 				<div class="card-footer p-3">
 					<p class="mb-0" id="timedate">
-						<span>05-11-2022</span>
+						<span style="font-weight: 500;">{{item.booking[0].arrivaldate
+							| date:'dd/MM/yyyy'}}</span> <span style="color: red; font-weight: 700;">-</span>
+						<span style="font-weight: 500;">{{item.booking[0].departuredate
+							| date:'dd/MM/yyyy'}}</span>
 					</p>
 				</div>
 			</div>
-			<div class="card" ng-if="item.status == 3" >
+			<div class="card" ng-if="item.status == 3">
 				<div class="card-header p-3 pt-2">
-					<div style="background-color:  rgb(178, 2, 2)!important;"
+					<div style="background-color: rgb(178, 2, 2) !important;"
 						class="icon icon-lg icon-shape fix-gradient  text-center border-radius-xl mt-n4 position-absolute">
 						<h4 style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h4>
 					</div>
 					<div class="text-end pt-1">
-						<p class="text-sm mb-0 text-capitalize">Today's empty room</p>
+						<p class="text-sm mb-0 text-capitalize">{{item.rtype.name}}</p>
 						<a href="../pages/tables.html">
-							<h4 class="mb-0"></h4>
+							<h4 class="mb-0">{{item.booking[0].guest.firstname}}&nbsp{{item.booking[0].guest.lastname}}</h4>
 						</a>
 					</div>
 				</div>
 				<hr class="dark horizontal my-0">
 				<div class="card-footer p-3">
 					<p class="mb-0" id="timedate">
-						<span>05-11-2022</span>
+						<span style="font-weight: 500;">05-11-2022</span>
 					</p>
 				</div>
 			</div>
-		<div class="card" ng-if="item.status == 4" >
+			<div class="card" ng-if="item.status == 4">
 				<div class="card-header p-3 pt-2">
-					<div style="background-color:   rgb(175, 65, 17)!important;"
+					<div style="background-color: rgb(175, 65, 17) !important;"
 						class="icon icon-lg icon-shape fix-gradient  text-center border-radius-xl mt-n4 position-absolute">
 						<h4 style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h4>
 					</div>
 					<div class="text-end pt-1">
-						<p class="text-sm mb-0 text-capitalize">Today's empty room</p>
+						<p class="text-sm mb-0 text-capitalize">{{item.rtype.name}}</p>
 						<a href="../pages/tables.html">
-							<h4 class="mb-0"></h4>
+							<h4 class="mb-0" style="font-size: 20px;">
+								<span class="material-icons"> construction </span>
+							</h4>
 						</a>
 					</div>
 				</div>
 				<hr class="dark horizontal my-0">
 				<div class="card-footer p-3">
 					<p class="mb-0" id="timedate">
-						<span>05-11-2022</span>
+						<span style="font-weight: 500;">{{date |
+							date:'dd/MM/yyyy'}}</span>
 					</p>
 				</div>
 			</div>
-			<div class="card" ng-if="item.status == 5" >
+			<div class="card" ng-if="item.status == 5">
 				<div class="card-header p-3 pt-2">
-					<div style="background-color:  rgb(153, 0, 110)!important;"
+					<div style="background-color: rgb(153, 0, 110) !important;"
 						class="icon icon-lg icon-shape fix-gradient  text-center border-radius-xl mt-n4 position-absolute">
 						<h4 style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h4>
 					</div>
 					<div class="text-end pt-1">
-						<p class="text-sm mb-0 text-capitalize">Today's empty room</p>
+						<p class="text-sm mb-0 text-capitalize">{{item.rtype.name}}</p>
 						<a href="../pages/tables.html">
-							<h4 class="mb-0"></h4>
+							<h4 class="mb-0">{{item.booking[0].guest.firstname}}&nbsp{{item.booking[0].guest.lastname}}</h4>
 						</a>
 					</div>
 				</div>
@@ -192,18 +387,18 @@
 					</p>
 				</div>
 			</div>
+		</div>
 	</div>
-</div>
 </div>
 <footer class="footer py-4  ">
 	<div class="container-fluid">
 		<div class="row align-items-center justify-content-lg-between">
 			<div class="col-lg-6 mb-lg-0 mb-4">
 				<div class="copyright text-center text-sm text-muted text-lg-start">
-					©
+					Â©
 					<script>
-                                    document.write(new Date().getFullYear())
-                                </script>
+						document.write(new Date().getFullYear())
+					</script>
 					, made with <i class="fa fa-heart"></i> by <a href=""
 						class="font-weight-bold" target="_blank">Golden Hotel</a> for a
 					better web.
@@ -225,4 +420,4 @@
 		</div>
 	</div>
 </footer>
-   
+

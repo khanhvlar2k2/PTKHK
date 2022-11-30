@@ -127,7 +127,7 @@
 		</div>
 		<div class="sidenav-footer position-absolute w-100 bottom-0 ">
 			<div class="mx-3">
-				<a class="btn bg-gradient-primary mt-4 w-100" href="/security/login"
+				<a class="btn bg-gradient-primary mt-4 w-100" href="/security/logoff/success"
 					type="button">SIGN OUT </a>
 			</div>
 		</div>
@@ -164,7 +164,7 @@
 							ng-click="selectedTab = 'profile'"><a href="#!profile"
 							class="nav-link text-body font-weight-bold px-0"> <i
 								class="fa fa-user me-sm-1"></i> <span class="d-sm-inline d-none">Hi
-									Huan Nguyen</span>
+									 {{user.email}}</span>
 						</a></li>
 						<li class="nav-item d-xl-none ps-3 d-flex align-items-center">
 							<a href="javascript:;" class="nav-link text-body p-0"
@@ -625,7 +625,8 @@
 	<script src="assets/js/room-ctrl.js"></script>
 	<script src="assets/js/dashboard-ctrl.js"></script>
 	<script src="assets/js/room-manager-ctrl.js"></script>
-	<script src="assets/js/roomtype-manager-ctrl.js"></script>
+	<script src="assets/js/roomtype-manager-ctrl.js"></script> 
+	<script src="assets/js/authority-ctrl.js"></script> 
 	<!-- Github buttons -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!-- Control Center for GOLDEN-HOTELDashboard: parallax effects, scripts for the example pages etc -->

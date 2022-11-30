@@ -32,11 +32,11 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
-	@JoinColumn(name = "hotelid")
-	Hotel hotel;
-	@ManyToOne
 	@JoinColumn(name = "guestid")
 	Guest guest;
+	@ManyToOne
+	@JoinColumn(name = "employeeid")
+	Empolyee employee;
 	@ManyToOne
 	@JoinColumn(name = "roomid")
     Room room ;
