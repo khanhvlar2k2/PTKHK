@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -31,17 +32,23 @@ public class GoldenHotelApplication {
 
 	@Scheduled(cron="0 * * * * *", zone="Asia/Ho_Chi_Minh")
 	void changeStatus() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-		LocalDateTime now = LocalDateTime.now();
-		List<Booking> listBK = daoBooking.findAll();
-		for (int i = 0; i < listBK.size(); i++) {
-			int diff = now.compareTo(listBK.get(i).getDeparturedate());
-			if(diff>0 ) {
-				Room room = new Room();
-				room.setStatus(0);
-				roomBooking.save(room);
-			}
-		}
+		Executors.newCachedThreadPool().execute(new Runnable() {
+		    @Override
+		    public void run() {
+		    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+				LocalDateTime now = LocalDateTime.now();
+				List<Booking> listBK = daoBooking.findAll();
+				if(listBK.get(0).getDeparturedate()!=null) {
+				for (int i = 0; i < listBK.size(); i++) {
+					int diff = now.compareTo(listBK.get(i).getDeparturedate());
+					if(diff>0 ) {
+						Room room = new Room();
+						room.setStatus(0);
+						roomBooking.save(room);
+					}
+				}}
+		    }
+		});
 	}
 	
 }

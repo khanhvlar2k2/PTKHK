@@ -14,7 +14,7 @@
          <th:block th:replace="/layout/nav2.html"></th:block>
         <div class="header-background"></div>
         <div class="booking-room">
-           <form action="/rooms" method="get" class="book-room-form">
+           <form  class="book-room-form">
             <div class="book-room-chill">
                 <div class="input-group w-20">
                     <div class="input-title">Ngày Nhận Phòng</div>
@@ -37,7 +37,7 @@
                     <input class="input-text" type="number" name="quantity" th:value="${adultquantity}">
                 </div>
                 <div class="input-group w-20">
-                    <button style="width: 200px; height: 50px;  background-color: #012449; border: none; color: white!; font-weight: bolder;"><a href="/rooms">TÌm KIếm</a> </button>
+                    <button action="/handle" method="post" style="width: 200px; height: 50px;  background-color: #012449; border: none; color: white!; font-weight: bolder;">Tìm Kiếm</button>
                 </div>
             </div>
         </form>
@@ -52,7 +52,7 @@
                 
             </div>
              
-             <div class="col-md-12 list-room" th:each="room : ${rooms}"> 
+             <div class="col-md-12 list-room" > 
                       <div class="room-info">
                         <div class="col-md-3 ">
                             <div class="room-img">
@@ -71,7 +71,7 @@
                         <div class="col-md-6">
                             <div class="room-des">
                                 <h3><a href="#" data-toggle="modal" data-target="#modal-id"></a></h3>
-                                <p th:text="${room.rtype.name}"></p>
+                                <h4 th:text="${rooms.rtype.name}"></h4>
                                 <ul class="room-size  col-md-4">
                                     <li><i class="fa fa-arrow-right"></i>  Size: 40m2 </li>
                                     <li><i class="fa fa-bed" aria-hidden="true"></i> Beds: 2 Single(s) </li>
@@ -91,8 +91,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="room-rate">
-                                <a  th:href="@{|/rooms/detail-room/${room.rtype.name}|}"  style="text-decoration:underline;">Xem chi tiết phòng</a>
-                                <p style="font-size: 18px"  >   [[${room.rtype.price}]] VND/Đêm</p>
+                                <a  th:href="@{|/rooms/detail-room/${rooms.rtype.name}|}"  style="text-decoration:underline;">Xem chi tiết phòng</a>
+                                <p style="font-size: 18px"  >   [[${rooms.rtype.price}]] VND/Đêm</p>
                                 <a href="/rooms/checkout" class="booknow">Book Now</a>
                             </div>
                         </div>
