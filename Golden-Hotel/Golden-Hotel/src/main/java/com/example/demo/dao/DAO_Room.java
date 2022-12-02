@@ -21,7 +21,7 @@ public interface DAO_Room extends JpaRepository<Room, Integer>
    
     @Query(value="Select o.id,o.roomtype,o.photo,o.status,i.price,i.name,i.roomdesc from room o inner join roomtype i on o.roomtype=i.type where o.status=0 and i.name=?1 ", nativeQuery=true)
     List<Room> findbyCondition(String name );
-    @Query(value="Select * from Room where status = 0 and id=?1", nativeQuery=true)
+    @Query(value="Select * from Room where status = 0 and RoomType=?1", nativeQuery=true)
     List<Room> findRoom(int id);
     
     @Query("select r from Room r where r.status =?1")

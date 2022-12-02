@@ -36,4 +36,6 @@ public class RoomType {
 	int price;
 	String roomdesc;
 	String name;
+	Float views;
+	Double sale;
 }

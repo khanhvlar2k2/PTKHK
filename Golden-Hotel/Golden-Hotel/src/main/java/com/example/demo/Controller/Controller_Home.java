@@ -25,6 +25,7 @@ public class Controller_Home {
 	@GetMapping({"","home/index"})
 	public String home(Model model) {
 		model.addAttribute("types", daoRTP.findAll());
+		model.addAttribute("items",daoRTP.getRoombyViews());
 		return "home/index";
 	}
 	

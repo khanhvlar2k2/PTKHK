@@ -100,12 +100,13 @@ public class Controller_Room {
 		List<Room> room = new ArrayList<Room>();
 		List<Room> room2  =  dao.findbyCondition(name);
 		room = dao.findRoom(roomtype.getType());
-		if(room.size()+1>0 && room.size()+1>Integer.parseInt(text2)) {
-			model.addAttribute("rooms",room2);
+		if(room.size()+1>0 && room.size()+1>=Integer.parseInt(text2)) {
 			model.addAttribute("qleft",room.size()+1);
+			model.addAttribute("rooms",room2.get(0));
 		}else {
+			room2 = new ArrayList<Room>();
+			model.addAttribute("rooms",room2);
 			model.addAttribute("messagesss","No Room are available");
-
 		}
 
 
