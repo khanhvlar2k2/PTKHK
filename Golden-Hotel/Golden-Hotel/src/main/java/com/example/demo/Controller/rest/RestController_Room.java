@@ -42,9 +42,7 @@ public class RestController_Room {
         @DeleteMapping("/rooms/{id}")
         public void delete(@PathVariable("id") int id){
         	 roomService.deleteById(id);
-        }
-        
-        
+        }              
         @GetMapping("rooms/count")
     	public Map<String,Object> showCount(){
     		Map<String,Object> map = new HashMap<>();  		

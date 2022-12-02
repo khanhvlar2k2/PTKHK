@@ -13,8 +13,8 @@ app.controller("room-ctrl", function($scope, $http, $location) {
  
 
 	}
-	$scope.dataStatus = function(){
-		$http.get(`/rest/dataStatus/Zero`).then(resp => {
+	$scope.dataStatus = function(item){
+		$http.get(`/rest/dataStatus/${item.status}`,item).then(resp => {
 			$scope.items = resp.data;
 			console.log(resp.data);	
 		})

@@ -95,7 +95,7 @@ input:checked+.slider:before {
 											<div class="form-group col-md-12">
 												<label for="inputEmail4">ID</label> <input type="text"
 													class="form-control" id="inputEmail4" placeholder="Id"
-													ng-model="form.id" >
+													ng-model="form.id">
 											</div>
 											<div class="form-group col-md-12">
 												<label for="inputPassword4">Name Room</label> <input
@@ -114,8 +114,8 @@ input:checked+.slider:before {
 												<label for="inputCity">Price</label>
 												<div class="input-group-prepend">
 													<input type="number" class="form-control"
-														placeholder="Salary" ng-model="form.rtype.price" disabled="disabled"><span
-														class="input-group-text">VND</span>
+														placeholder="Salary" ng-model="form.rtype.price"
+														disabled="disabled"><span class="input-group-text">VND</span>
 												</div>
 
 											</div>
@@ -135,12 +135,20 @@ input:checked+.slider:before {
 							</div>
 							<div class="col-lg-4 col-md-4">
 								<h3 style="text-align: center;">ROOMS LIST</h3>
-								<div class="form-group col-md-12">
-									<input type="text" class="form-control" id="inputPassword4"
-										placeholder="Search...">
+								<div class="row">
+									<div class="form-group col-md-8">
+										<input type="text" ng-model="searchR" class="form-control"
+											id="inputPassword4" placeholder="Search...">
+									</div>
+									<div class="form-group col-sm-4" style="margin-left: -20px;">
+										<select id="sendNotification" class="form-select"
+											name="sendNotification">
+											<option ng-repeat="rt in roomtype" ng-value="rt.type">{{rt.name}}</option>
+										</select>
+									</div>
 								</div>
 								<div style="overflow: auto; height: 500px;">
-									<div class="card" ng-repeat="item in items"
+									<div class="card" ng-repeat="item in items |filter:searchR"
 										ng-click="edit(item)"
 										style="width: 100% !important; margin: 20px auto; padding: 10px;">
 										<div class="card-header p-3 pt-2">
@@ -202,8 +210,8 @@ input:checked+.slider:before {
 				<div class="copyright text-center text-sm text-muted text-lg-start">
 					©
 					<script>
-                                    document.write(new Date().getFullYear())
-                                </script>
+						document.write(new Date().getFullYear())
+					</script>
 					, made with <i class="fa fa-heart"></i> by <a href=""
 						class="font-weight-bold" target="_blank">Golden Hotel</a> for a
 					better web.

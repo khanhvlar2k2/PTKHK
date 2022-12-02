@@ -22,7 +22,7 @@ public class MailInfo {
 	String[] attachments;
 
 	public MailInfo(String to, String subject, String body) {
-		this.from = "GOLDEN-HOTEL SECURITY";
+		this.from = "GOLDEN-HOTEL ADMIN<huannqps18946@fpt.edu.vn>";
 		this.to = to;
 		this.subject = subject;
 		this.body = body;

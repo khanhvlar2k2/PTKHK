@@ -18,9 +18,9 @@ import com.example.demo.entity.Room;
 @RequestMapping("rest/dataStatus")
 public class RestController_Status {
 	@Autowired private DAO_Room roomService; 
-	@GetMapping("/Zero")
-	public List<Room> fgetDataFindByStatus(){
-		return roomService.getDataStatusZero();
+	@GetMapping("/{status}")
+	public List<Room> fgetDataFindByStatus(@RequestBody List<Room> rooms,@PathVariable("status") int  status){
+		return roomService.getDataStatus(status);
 	}
 
 }

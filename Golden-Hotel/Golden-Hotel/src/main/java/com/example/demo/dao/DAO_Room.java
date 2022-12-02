@@ -24,8 +24,8 @@ public interface DAO_Room extends JpaRepository<Room, Integer>
     @Query(value="Select * from Room where status = 0 and id=?1", nativeQuery=true)
     List<Room> findRoom(int id);
     
-    @Query("select r from Room r where r.status = 0")
-    public List<Room> getDataStatusZero();
+    @Query("select r from Room r where r.status =?1")
+    public List<Room> getDataStatus(int status);
 
     
     
