@@ -22,7 +22,7 @@ import com.example.demo.entity.Room;
 import com.example.demo.entity.RoomType;
 
 @Controller
-@RequestMapping("rooms")
+@RequestMapping("home/index/rooms")
 public class Controller_Room {
 
 	@Autowired
@@ -39,16 +39,20 @@ public class Controller_Room {
 	
 	@GetMapping({ "" })
 	public String Rooms(Model model, HttpServletRequest req) {
-		loadData(model, req);
-		loadroom(model);
+		model.addAttribute("title", "Rooms");
+		model.addAttribute("title2", "Rooms");
+//		loadData(model, req);
+//		loadroom(model);
 		return "room/rooms";
 	}
 
-	@GetMapping({ "/detail-room/{id}" })
-	public String DetailRoom(Model model, @PathVariable("id") String id) {
-		Room item = dao.findbyRoomTypeWithRoom(id);
-		model.addAttribute("item", item);
-		return "room/detail-room";
+	@GetMapping("/detail-room")//{id}
+	public String DetailRoom(Model model ) { //@PathVariable("id") String id
+//		Room item = dao.findbyRoomTypeWithRoom(id);
+//		model.addAttribute("item", item);
+		model.addAttribute("title", "Room Detail");
+		model.addAttribute("title2", "Family Room");
+		return "room/rooms-single";
 	}
 
 	@GetMapping({ "/checkout" })

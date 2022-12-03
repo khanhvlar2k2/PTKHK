@@ -77,6 +77,7 @@ public class Controller_Security {
 
 	@GetMapping("/forget-pass")
 	public String getforgotPass(Model model) {
+		model.addAttribute("title", "Reset Password");
 		return "security/forget-pass";
 
 	}
@@ -229,14 +230,17 @@ public class Controller_Security {
 
 
 					);	
+					model.addAttribute("title", "Successfully");
 					model.addAttribute("messageS","Email sent successfully. Please check your email for password !!");
 
 				}else {
+				
 					model.addAttribute("message","Please enter input email!!");
 				}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			model.addAttribute("title", "Failed");
 			model.addAttribute("message","Account does not exist!");
 		}
 
