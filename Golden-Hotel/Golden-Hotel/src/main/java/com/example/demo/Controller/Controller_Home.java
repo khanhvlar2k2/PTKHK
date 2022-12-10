@@ -76,6 +76,12 @@ public class Controller_Home {
 		model.addAttribute("title2", "Blog Us");
 		return "blog/blog-single";
 	}
+	@GetMapping("/checkout")
+	public String checkOut(Model model) {
+		model.addAttribute("title", "Booking");
+		model.addAttribute("title2", "Check Out");
+		return "checkout/checkout";
+	}
 	
 
 }
