@@ -43,7 +43,7 @@ public class Controller_Home {
 		session.setAttribute("dates", dataDate);
 		session.setAttribute("othersData", othersData);
 		System.out.println(dataDate.keySet());
-		return "redirect:/rooms";
+		return "redirect:/home/index/rooms";
 	}
 
 	@GetMapping("/contact")

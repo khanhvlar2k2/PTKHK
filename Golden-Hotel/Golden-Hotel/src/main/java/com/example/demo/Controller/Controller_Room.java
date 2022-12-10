@@ -22,6 +22,7 @@ import com.example.demo.dao.DAO_RoomType;
 import com.example.demo.entity.Gallery;
 import com.example.demo.entity.Room;
 import com.example.demo.entity.RoomType;
+import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Empty;
 
 @Controller
 @RequestMapping("home/index/rooms")
@@ -44,7 +45,7 @@ public class Controller_Room {
 	@GetMapping("")
 	public String Rooms(Model model, HttpServletRequest req) {
 		model.addAttribute("title", "Rooms");
-		model.addAttribute("title2", "Rooms");
+		//model.addAttribute("title2", "Rooms");
 //		loadData(model, req);
 //		loadroom(model);
 		return "room/rooms";
@@ -52,12 +53,15 @@ public class Controller_Room {
 
 	@GetMapping("/detail-room/{id}")
 	public String DetailRoom(Model model,@PathVariable("id") int id) { 
-		RoomType item = daoRTP.findById(id).get();
+		RoomType item = daoRTP.findById(id).orElse(new RoomType());
 		List<Gallery> images = serviceGallery.findByGaleryProducttilte(id);
+		RoomType RMTP = daoRTP.findById(id).orElse(new RoomType());
 		model.addAttribute("images", images);	
 		model.addAttribute("item", item);
 		model.addAttribute("title", "Room Detail");
-		model.addAttribute("title2", "Family Room");
+		model.addAttribute("title2",RMTP.getName());
+		model.addAttribute("room2", RMTP);
+		model.addAttribute("available", daoRTP.getAvailableRoom());
 		return "room/rooms-single";
 	}
 
