@@ -1,0 +1,60 @@
+.fixtop {
+    margin-top: 30px;
+}
+
+.fix-change {
+    margin: 2px;
+    padding: 2px !important;
+}
+
+.text-change {
+    font-size: small;
+    text-align: center;
+    margin-top: 14px;
+    color: white;
+}
+
+.text-change a {
+    color: white;
+}
+
+.text-change1 {
+    font-size: small;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.text-change1 a {
+    color: white;
+}
+
+.text-change1 a:hover {
+    color: rgb(255, 255, 0);
+}
+
+.card-fix {
+    height: 50px;
+}
+
+.text-change a:hover {
+    color: rgb(255, 255, 0);
+}
+
+.fix-gradient {
+    background-color: rgb(8, 156, 8) !important;
+}
+
+.fix-gradient2 {
+    background-color: rgb(0, 100, 200) !important;
+}
+
+.mb-0 {
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 600px) {
+    .fix-change {
+        width: 80px;
+    }
+}

@@ -20,12 +20,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 @SuppressWarnings("serial")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity 
+@Getter
+@Setter
 @Table(name="Booking")
 public class Booking {
 	@Id
@@ -50,6 +54,10 @@ public class Booking {
 	@JsonIgnore
 	@OneToMany(mappedBy = "booking")
 	List<Invoice> invoice;
+	
+	
+	
+	
 	
 
 }

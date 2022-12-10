@@ -31,4 +31,24 @@ public class Authority  implements Serializable{
 	private Empolyee employee;
 	@ManyToOne  @JoinColumn(name = "roleid")
 	private Role role;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Empolyee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Empolyee employee) {
+		this.employee = employee;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
+	
 }

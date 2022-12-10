@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dao.DAO_Empolyee;
+import com.example.demo.dao.DAO_Gallery;
 import com.example.demo.dao.DAO_Room;
 import com.example.demo.dao.DAO_RoomType;
+import com.example.demo.entity.Gallery;
 import com.example.demo.entity.Room;
 import com.example.demo.entity.RoomType;
 
@@ -30,6 +32,8 @@ public class Controller_Room {
 	@Autowired
 	DAO_RoomType daoRTP;
 	
+	@Autowired private DAO_Gallery serviceGallery;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -37,7 +41,7 @@ public class Controller_Room {
 	boolean isfilled = true;
 	int isRented = 1;
 	
-	@GetMapping({ "" })
+	@GetMapping("")
 	public String Rooms(Model model, HttpServletRequest req) {
 		model.addAttribute("title", "Rooms");
 		model.addAttribute("title2", "Rooms");
@@ -46,16 +50,18 @@ public class Controller_Room {
 		return "room/rooms";
 	}
 
-	@GetMapping("/detail-room")//{id}
-	public String DetailRoom(Model model ) { //@PathVariable("id") String id
-//		Room item = dao.findbyRoomTypeWithRoom(id);
-//		model.addAttribute("item", item);
+	@GetMapping("/detail-room/{id}")
+	public String DetailRoom(Model model,@PathVariable("id") int id) { 
+		RoomType item = daoRTP.findById(id).get();
+		List<Gallery> images = serviceGallery.findByGaleryProducttilte(id);
+		model.addAttribute("images", images);	
+		model.addAttribute("item", item);
 		model.addAttribute("title", "Room Detail");
 		model.addAttribute("title2", "Family Room");
 		return "room/rooms-single";
 	}
 
-	@GetMapping({ "/checkout" })
+	@GetMapping("/checkout")
 	public String CheckOut(Model model) {
 		return "checkout/checkout";
 	}

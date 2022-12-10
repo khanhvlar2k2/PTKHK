@@ -16,12 +16,7 @@ import com.example.demo.dao.DAO_RoomType;
 @Controller
 @RequestMapping("user")
 public class Controller_Empolyee {
-//	@Autowired DAO_Empolyee emdao;
-//	@GetMapping({""})
-//	public String Em(Model model) {
-//		model.addAttribute("list", emdao.findAll());
-//		return "index";
-//	}
+
 	
 	@Autowired DAO_Room dao;
 	

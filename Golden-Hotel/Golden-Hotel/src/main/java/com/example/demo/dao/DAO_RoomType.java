@@ -13,5 +13,8 @@ public interface DAO_RoomType extends JpaRepository<RoomType, Integer>
  {	
 	@Query( value ="Select top 6 * from Roomtype order by Views",nativeQuery=true)
 	public List<RoomType> getRoombyViews();
+	
+	@Query( value ="select * from RoomType where name = ?1;",nativeQuery=true)
+	public RoomType findByName(String id);
 
 }

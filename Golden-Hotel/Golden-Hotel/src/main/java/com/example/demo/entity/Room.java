@@ -39,6 +39,40 @@ public class Room {
 	 @OneToMany(mappedBy = "room")
 	 List<Booking> booking;	 
 	 String name;
-	
-
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public RoomType getRtype() {
+		return rtype;
+	}
+	public void setRtype(RoomType rtype) {
+		this.rtype = rtype;
+	}
+	public List<Booking> getBooking() {
+		return booking;
+	}
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 }

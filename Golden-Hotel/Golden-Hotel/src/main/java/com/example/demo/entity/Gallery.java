@@ -29,4 +29,27 @@ public class Gallery {
 	@JoinColumn(name = "roomtype")
 	RoomType roomtype;
     
+    
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	public RoomType getRoomtype() {
+		return roomtype;
+	}
+	public void setRoomtype(RoomType roomtype) {
+		this.roomtype = roomtype;
+	}
+    
+    
+    
+    
 }
