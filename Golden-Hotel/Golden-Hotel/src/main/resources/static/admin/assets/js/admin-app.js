@@ -7,10 +7,17 @@ app.config(function($routeProvider) {
 		.when("/employee-manager", {
 			templateUrl: "../admin/pages/account/account.html",
 			controller: "account-ctrl"
+		}).
+		when("/authority-manager", {
+			templateUrl: "../admin/pages/account/authority.html",
+			controller: "authority-ctrl"
 		})
 		.when("/dashboard", {
 			templateUrl: "../admin/pages/dashboard/dashboard.html",
 			controller: ""
+		}).when("/guest-manager", {
+			templateUrl: "../admin/pages/guest/guests.html",
+			controller: "guest-ctrl"
 		}).
 		when("/profile", {
 			templateUrl: "../admin/pages/account/profile.html",

@@ -17,11 +17,13 @@
 <!-- Font Awesome Icons -->
 <script src="https://kit.fontawesome.com/42d5adcbca.js"
 	crossorigin="anonymous"></script>
+	
 <!-- GOLDEN-HOTELIcons -->
 <link
 	href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
 	rel="stylesheet">
 <!-- CSS Files -->
+
 <link id="pagestyle" href="assets/css/material-dashboard.css?v=3.0.4"
 	rel="stylesheet" />
 	<link id="pagestyle" href="/toast/css/jquery.toast.css"
@@ -35,6 +37,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.js"
 	integrity="sha512-C92rntF0G0YH9kHzQlpux7ADvyKgyUwBqusewsHs/0ibOTNuHxFyVqDkI0BIcLGyP76fxgLOpMOLO6kmHCS/xA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<style>
+	 b{
+	 color:white;
+	 font-size: 13px;
+	 
+	}
+	
+	</style>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -88,10 +98,23 @@
 							<i class="material-icons opacity-10">format_textdirection_r_to_l</i>
 						</div> <span class="nav-link-text ms-1">Rental Rooms Manager</span>
 				</a></li>
+				<li class="nav-item"
+					ng-class="{'nav-item active':selectedTab === 'guest','nav-item':selectedTab != 'guest'}"
+					ng-click="selectedTab = 'guest'"><a
+					class="nav-link text-white "
+					ng-class="{'nav-link bg-gradient-primary':selectedTab === 'guest','nav-link':selectedTab != 'guest'}"
+					href="#!guest-manager">
+						<div
+							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+							<i class="material-icons opacity-10">supervisor_account</i>
+						
+						</div> <span class="nav-link-text ms-1">Guest Manager</span>
+				</a></li>
 				<li class="nav-item mt-3">
 					<h6
 						class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">MANAGER</h6>
 				</li>
+		
 				<li class="nav-item"
 					ng-class="{'nav-item active':selectedTab === 'Account','nav-item':selectedTab != 'Account'}"
 					ng-click="selectedTab = 'Account'"><a
@@ -102,6 +125,19 @@
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">person</i>
 						</div> <span class="nav-link-text ms-1">Account Manager</span>
+				</a></li>
+				<li class="nav-item"
+					ng-class="{'nav-item active':selectedTab === 'Authority','nav-item':selectedTab != 'Authority'}"
+					ng-click="selectedTab = 'Authority'"><a
+					class="nav-link text-white "
+					ng-class="{'nav-link bg-gradient-primary':selectedTab === 'Authority','nav-link':selectedTab != 'Authority'}"
+					href="#!authority-manager">
+						<div
+							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+							<span class="material-icons opacity-10">
+manage_accounts
+</span>
+						</div> <span class="nav-link-text ms-1">Authority Manager</span>
 				</a></li>
 				<li class="nav-item"
 					ng-class="{'nav-item active':selectedTab === 'Room','nav-item':selectedTab != 'Room'}"
@@ -169,7 +205,7 @@
 							ng-click="selectedTab = 'profile'"><a href="#!profile"
 							class="nav-link text-body font-weight-bold px-0"> <i
 								class="fa fa-user me-sm-1"></i> <span class="d-sm-inline d-none">Hi
-									 {{user.email}}</span>
+									 {{user.fullname}}</span>
 						</a></li>
 						<li class="nav-item d-xl-none ps-3 d-flex align-items-center">
 							<a href="javascript:;" class="nav-link text-body p-0"
@@ -632,6 +668,7 @@
 	<script src="assets/js/room-manager-ctrl.js"></script>
 	<script src="assets/js/roomtype-manager-ctrl.js"></script> 
 	<script src="assets/js/authority-ctrl.js"></script> 
+	<script src="assets/js/guest-ctrl.js"></script> 
 	<!-- Github buttons -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!-- Control Center for GOLDEN-HOTELDashboard: parallax effects, scripts for the example pages etc -->
@@ -639,6 +676,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="/toast/js/jquery.toast.js"></script>
      <script type="text/javascript" src="/toast/js/main.js"></script>
+     
     
 </body>
 

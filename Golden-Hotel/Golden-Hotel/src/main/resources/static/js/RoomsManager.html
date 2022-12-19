@@ -1,79 +1,81 @@
 <style>
-.switch {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
-}
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 60px;
+		height: 34px;
+	}
 
-.switch input {
-	opacity: 0;
-	width: 0;
-	height: 0;
-}
+	.switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
 
-.slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #ccc;
-	-webkit-transition: .4s;
-	transition: .4s;
-}
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
 
-.slider:before {
-	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: white;
-	-webkit-transition: .4s;
-	transition: .4s;
-}
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 26px;
+		width: 26px;
+		left: 4px;
+		bottom: 4px;
+		background-color: white;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
 
-input:checked+.slider {
-	background-color: #2196F3;
-}
+	input:checked+.slider {
+		background-color: #2196F3;
+	}
 
-input:focus+.slider {
-	box-shadow: 0 0 1px #2196F3;
-}
+	input:focus+.slider {
+		box-shadow: 0 0 1px #2196F3;
+	}
 
-input:checked+.slider:before {
-	-webkit-transform: translateX(26px);
-	-ms-transform: translateX(26px);
-	transform: translateX(26px);
-}
+	input:checked+.slider:before {
+		-webkit-transform: translateX(26px);
+		-ms-transform: translateX(26px);
+		transform: translateX(26px);
+	}
 
-/* Rounded sliders */
-.slider.round {
-	border-radius: 34px;
-}
+	/* Rounded sliders */
+	.slider.round {
+		border-radius: 34px;
+	}
 
-.slider.round:before {
-	border-radius: 50%;
-}
+	.slider.round:before {
+		border-radius: 50%;
+	}
 
-.input-group-text {
-	background-color: #0c2333;
-	color: white;
-}
-select,option{
-  text-transform: uppercase;
-}
+	.input-group-text {
+		background-color: #0c2333;
+		color: white;
+	}
+	select{
+	 text-transform: uppercase;
+	}
+	option{
+	    text-transform: uppercase;
+	}
 </style>
 <div class="container-fluid py-4">
 	<div class="row">
 		<div class="col-12">
 			<div class="card my-4">
 				<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-					<div
-						class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+					<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
 						<h6 class="text-white text-capitalize ps-3">ROOM MANAGERMENT</h6>
 					</div>
 				</div>
@@ -101,37 +103,43 @@ select,option{
 													ng-model="form.id">
 											</div>
 											<div class="form-group col-md-12">
-												<label for="inputPassword4">Name Room</label> <input
-													type="text" class="form-control" id="inputPassword4"
-													placeholder="Name" ng-model="form.name">
+												<label for="inputPassword4">Name Room</label> <input type="text"
+													class="form-control" id="inputPassword4" placeholder="Name"
+													ng-model="form.name">
 											</div>
 											<div class="form-group col-md-12">
-												<label for="inputCity">Type</label> <select
-													ng-model="form.rtype.type" class="form-control" id="sel1"
-													name="sellist1">
-													<option ng-repeat="rt in roomtype" ng-value="rt.type">{{rt.name}}</option>
+												<label for="inputCity">Type</label> <select ng-model="form.rtype.type"
+													class="form-control" id="sel1" name="sellist1">
+													<option ng-repeat="rt in roomtype" ng-value="rt.type">{{rt.name}}
+													</option>
+												</select>
+											</div>
+											<div class="form-group col-md-12">
+												<label for="inputCity">Status</label> <select ng-model="form.status"
+													class="form-control" id="sel1" name="sellist1">
+													<option  ng-value="0">EMPTY 
+													</option>
+													<option  ng-value="1">RECEIVED 
+													</option>
+													<option  ng-value="2">Booking 
+													</option>
+													<option  ng-value="3">Canceled 
+													</option>
+													<option  ng-value="4">Repairing 
+													</option>
+													<option  ng-value="5">Expired 
+													</option>
 												</select>
 											</div>
 
 											<div class="form-group col-md-12">
-												<label for="inputCity">Price</label>
+												<label for="inputCity">Historical cost</label>
 												<div class="input-group-prepend">
-													<input type="number" class="form-control"
-														placeholder="Price has dropped " ng-model="form.rtype.price*(100-form.rtype.sale)/100"
-														disabled="disabled"><span class="input-group-text">VND</span>
+													<input type="number" class="form-control" placeholder="Salary"
+														ng-model="form.rtype.price" disabled="disabled"><span
+														class="input-group-text">VND</span>
 												</div>
-											</div>
-											<div class="form-group col-md-12">
-												<label for="inputCity">Status</label> <select
-													ng-model="form.status" class="form-control" id="sel1"
-													name="sellist1">
-													<option  ng-value="0">EMPTY</option>
-													<option  ng-value="1">Received</option>
-													<option  ng-value="2">BOOKING</option>
-													<option  ng-value="3">Canceled</option>
-													<option  ng-value="4">Repairing</option>
-													<option  ng-value="5">Expired</option>
-												</select>
+
 											</div>
 											<div class="form-group col-md-12">
 												<button type="submit" class="btn btn-outline-secondary"
@@ -149,29 +157,29 @@ select,option{
 								<h3 style="text-align: center;">ROOMS LIST</h3>
 								<div class="row">
 									<div class="form-group col-md-8">
-										<input type="text" ng-model="searchR" class="form-control"
-											id="inputPassword4" placeholder="Search...">
+										<input type="text" ng-model="searchR" class="form-control" id="inputPassword4"
+											placeholder="Search...">
 									</div>
 									<div class="form-group col-sm-4" style="margin-left: -20px;">
-										<select id="sendNotification" class="form-select"
-											name="sendNotification">
+										<select id="sendNotification" class="form-select" name="sendNotification">
 											<option ng-repeat="rt in roomtype" ng-value="rt.type">{{rt.name}}</option>
 										</select>
 									</div>
+
 								</div>
 								<div style="overflow: auto; height: 500px;">
 									<div class="card" ng-repeat="item in items |filter:searchR"
-										
 										style="width: 100% !important; margin: 20px auto; padding: 10px;">
 										<div class="card-header p-3 pt-2" ng-click="edit(item)">
 											<div style="background: #002c3e"
 												class="icon icon-lg icon-shape  text-center border-radius-xl mt-n4 position-absolute">
-												<h5
-													style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h5>
+												<h5 style="text-align: center; margin: 15px auto; color: white;">
+													{{item.name}}</h5>
 											</div>
 											<div class="text-end pt-1">
 												<p class="text-sm mb-0 text-capitalize"
-													style="font-weight: bold; font-family: sans-serif;">{{item.rtype.name}}</p>
+													style="font-weight: bold; font-family: sans-serif;">
+													{{item.rtype.name}}</p>
 												<div ng-if="item.status == 0">
 													<h4 class="mb-0" style="color: green;">Empty room</h4>
 												</div>
@@ -196,12 +204,17 @@ select,option{
 										<hr class="dark horizontal my-0">
 										<div class="card-footer p-3">
 											<p class="mb-0" id="timedate">
-												<span style="font-weight: 700;">{{item.rtype.price*(100-item.rtype.sale)/100}}VND</span>&emsp;&emsp;&emsp;&emsp;
+												<span
+													style="font-weight: 700;">{{item.rtype.price*(100-item.rtype.sale)/100}}<span
+														style="font-size: 12px;">VND</span></span>&emsp;&emsp;&emsp;&emsp;
 												&emsp;
-												&emsp; <a href="" ng-click="edit(item)"
-													style="text-decoration: underline;  font-size: 13px; text-transform: capitalize;">Edit</a>
-												 <a href="" ng-click="delete(item)"
-													style="text-decoration: underline; color: red; font-size: 13px; text-transform: capitalize;">Remove</a>
+												
+												 <a ng-click="edit(item)"
+													style="text-decoration: underline; font-size: 13px; text-transform: capitalize; font-weight:500;">edit</a>
+												<a href="" ng-click="delete(item)"
+													style="text-decoration: underline; color: red; font-size: 13px; text-transform: capitalize;font-weight:500;">Remove</a>
+												
+												
 											</p>
 										</div>
 									</div>
@@ -227,28 +240,20 @@ select,option{
 					<script>
 						document.write(new Date().getFullYear())
 					</script>
-					, made with <i class="fa fa-heart"></i> by <a href=""
-						class="font-weight-bold" target="_blank">Golden Hotel</a> for a
+					, made with <i class="fa fa-heart"></i> by <a href="" class="font-weight-bold"
+						target="_blank">Golden Hotel</a> for a
 					better web.
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<ul
-					class="nav nav-footer justify-content-center justify-content-lg-end">
-					<li class="nav-item"><a href="" class="nav-link text-muted"
-						target="_blank">Golden Hotel</a></li>
-					<li class="nav-item"><a href="" class="nav-link text-muted"
-						target="_blank">About Us</a></li>
-					<li class="nav-item"><a href="/blog"
-						class="nav-link text-muted" target="_blank">Blog</a></li>
-					<li class="nav-item"><a href="/license"
-						class="nav-link pe-0 text-muted" target="_blank">License</a></li>
+				<ul class="nav nav-footer justify-content-center justify-content-lg-end">
+					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">Golden Hotel</a></li>
+					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">About Us</a></li>
+					<li class="nav-item"><a href="/blog" class="nav-link text-muted" target="_blank">Blog</a></li>
+					<li class="nav-item"><a href="/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </footer>
-
-
-
-

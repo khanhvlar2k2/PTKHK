@@ -5,10 +5,8 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 	$scope.roles = [];
 	$scope.selection = [];
 	$scope.authorities = [];
-	
-	
-	
 	$scope.initialize = function() {
+
 		//load all roles
 		$http.get("/rest/roles").then(resp => {
 			$scope.roles = resp.data;
@@ -59,34 +57,50 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 	}
 	//reset form
 	$scope.reset = function() {
+		
 		$scope.form = {
 			avatar: 'no_avatar.png',
 			status: true,
 			gender: false
 		}
 	}
-
-	//Thêm account
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/accountsManage`, item).then(resp => {
 			$scope.items.push(resp.data);
 			console.log(resp.data);
+			
 			//thêm phân quyền
 			$scope.selection.forEach(r => {
-				var authority = { employee: item, role: r };
+				var authority = { account: item, role: r };
 				$http.post(`/rest/authorities`, authority).then(resp => {
 					$scope.items.push(resp.data);
 				}).catch(err => {
 					console.log("Error ", err);
 				})
+				
 			})
-			$scope.initialize();
+			$.toast({
+				text: 'Add New Account Success  ' +item.fullname,
+				heading: 'Create Information',
+				showHideTransition: 'plain',
+				icon: 'success', 
+				position: 'bottom-right',
+				textAlign: 'left'})
 			$scope.reset();
+			
 
 		}).catch(err => {
 			console.log("Error ", err);
-
+			$.toast({
+				text: 'Add new account failed  ' +$scope.form.fullname,
+				heading: 'Created Information',
+				showHideTransition: 'plain',
+				icon: 'error', 
+				position: 'bottom-right',
+				textAlign: 'left'
+		})
+			
 		})
 	}
 
@@ -109,6 +123,16 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 					})
 				})
 			})
+
+
+			$.toast({
+				text: 'Updated Account' +item.fullname +' successful',
+				heading: 'Update Information',
+				showHideTransition: 'plain',
+				icon: 'success', 
+				position: 'bottom-right',
+				textAlign: 'left'
+			})
 			$scope.initialize();
 			$scope.reset();
 		}).catch(err => {
@@ -124,18 +148,34 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
 		$scope.getOneByRole(item.id);
-
-
+		$.toast({
+				text: 'Edited account ' +$scope.form.fullname +' successful',
+				heading: 'Edit Information',
+				showHideTransition: 'plain',
+				icon: 'info', 
+				position: 'bottom-right',
+				textAlign: 'left'
+		})
 	}
+
+
 	//Remove account
 	$scope.delete = function(item) {
 		$http.delete(`/rest/accounts/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.reset();
+			$.toast({
+				text: 'Deleted account ' + item.fullname +' successful',
+				heading: 'Delete Information',
+				showHideTransition: 'plain',
+				icon: 'error', 
+				position: 'bottom-right',
+				textAlign: 'left'
+		})
+
 			console.log(resp.data);
 		}).catch(err => {
-
 			console.log("Error ", err);
 		})
 	}
@@ -151,11 +191,22 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 			console.log("Error ", err)
 		})
 	}
+
 	$scope.getAu = function(role) {
+
 		$http.get("/rest/accounts?role=" + role).then(resp => {
 			$scope.items = resp.data;
 			$scope.pager.first()
 		})
+		//load authorities of staffs and directors
+		$http.get("/rest/authorities?role=" + role).then(resp => {
+			$scope.authorities = resp.data;
+			console.log(resp.data);
+		}).catch(err => {
+			$location.path("/unauthorized");
+		})
+
+
 	}
 
 	$scope.initialize();
