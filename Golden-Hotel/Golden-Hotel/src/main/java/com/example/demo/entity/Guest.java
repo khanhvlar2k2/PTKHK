@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name="Guest")
-@Data
+
 public class Guest {
       @Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -123,7 +123,10 @@ public class Guest {
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
-      
+
+	
+
+	
       
       
 }
