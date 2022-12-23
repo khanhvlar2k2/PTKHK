@@ -73,9 +73,87 @@
 		margin-left: 10px;
 	}
 </style>
-<div class="container-fluid py-4">	
-<div class="row">
-   
+<div class="container-fluid py-4">
+	<div class="row">
+		<div class="col-md-4 card ">
+			<div class="card-header pb-0 px-3">
+				<h6 class="mb-0" style="text-align:center;">SEND MAIL DISCOUNTS EVENT</h6>
+			</div>
+			<div class="card-body pt-4 p-3">
+				<form class="text-start" action="/admin/home/index" method="post">
+					<div class="form-group col-md-12">
+						<label for="inputEmail4"> Discounts Event Title</label> <input type="text" name="title"
+							class="form-control" id="inputEmail4">
+
+					</div>
+					<div class="form-group col-md-12">
+						<label for="comment">Description:</label>
+						<textarea class="form-control" name="description" rows="4" id="comment"></textarea>
+					</div>
+					<div class="text-center col-md-12">
+						<button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Send</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header pb-0 px-3">
+					<h6 class="mb-0">GUEST LIST</h6>
+				</div>
+				<div class="card-body pt-4 p-3">
+					<ul class="list-group">
+						<li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg"
+							ng-repeat="item in pager.items | filter:searchEmp">
+							<div class="d-flex flex-column">
+								<h6 class=" text-sm">{{item.firstname}} {{item.lastname}}</h6>
+								<span class="mb-2 text-xs">Phone Number: <span
+										class="text-dark font-weight-bold ms-sm-2">{{item.phoneno}}</span></span>
+								<span class="mb-2 text-xs">Email Address: <span
+										class="text-dark ms-sm-2 font-weight-bold">{{item.email}}</span></span>
+								<span class="text-xs">CCCD/CMND: <span
+										class="text-dark ms-sm-2 font-weight-bold">{{item.pid}}</span></span>
+							</div> &emsp;
+							<div class="d-flex flex-column">
+								&nbsp;&nbsp;&nbsp;&nbsp;<br>
+								<span class="mb-2 text-xs">Brithday: <span
+										class="text-dark font-weight-bold ms-sm-2">{{item.dob |
+										date:'MM/dd/yyyy'}}</span></span>
+								<span class="mb-2 text-xs">Sex: <span
+										class="text-dark ms-sm-2 font-weight-bold">{{item.gender
+										? 'Famale':'Male'}}</span></span>
+								<span class="text-xs">Address: <span
+										class="text-dark ms-sm-2 font-weight-bold">null</span></span>
+							</div>
+							<div class="ms-auto text-end">
+								<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
+										class="material-icons text-sm me-2">delete</i>Delete</a>
+								<a class="btn btn-link text-dark px-3 mb-0" href="#!billing"><i
+										class="material-icons text-sm me-2">
+										receipt_long
+									</i>Detail Booking</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="justify-content-center mt-2 mb-2 w-100" style="text-align: center;">
+					<button ng-click="pager.first()" class="btn btn-info">
+						<span class="material-icons"> first_page </span>
+					</button>
+					<button ng-click="pager.previous()" class="btn btn-info">
+						<span class="material-icons"> arrow_left </span>
+					</button>
+					<button class="btn btn-success">{{pager.page+1}} of
+						{{pager.count}}</button>
+					<button ng-click="pager.next()" class="btn btn-info">
+						<span class="material-icons"> arrow_right </span>
+					</button>
+					<button ng-click="pager.last()" class="btn btn-info">
+						<span class="material-icons"> last_page </span>
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <footer class="footer py-4  ">
@@ -94,9 +172,12 @@
 			</div>
 			<div class="col-lg-6">
 				<ul class="nav nav-footer justify-content-center justify-content-lg-end">
-					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">Golden Hotel</a></li>
-					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">About Us</a></li>
-					<li class="nav-item"><a href="/blog" class="nav-link text-muted" target="_blank">Blog</a></li>
+					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">Golden Hotel</a>
+					</li>
+					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">About Us</a>
+					</li>
+					<li class="nav-item"><a href="/blog" class="nav-link text-muted" target="_blank">Blog</a>
+					</li>
 					<li class="nav-item"><a href="/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
 					</li>
 				</ul>
@@ -104,4 +185,3 @@
 		</div>
 	</div>
 </footer>
-

@@ -20,5 +20,8 @@ public interface DAO_RoomType extends JpaRepository<RoomType, Integer>
 	
 	@Query(value="select  top 3 *  from Roomtype a inner join Room b on a.Type=b.Roomtype where b.Status=0", nativeQuery=true)
     public List<RoomType> getAvailableRoom();
+	
+	@Query( value ="select * from RoomType where sale > 0;",nativeQuery=true)
+	public  List<RoomType> findBySale();
     
 }

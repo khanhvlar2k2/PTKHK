@@ -37,7 +37,10 @@ app.config(function($routeProvider) {
 		}).when("/unauthorized", {
             templateUrl: "../admin/pages/account/unauthorized.html",
             controller: "authority-ctrl"
-        })
+        }).when("/billing", {
+			templateUrl: "../admin/pages/invoice/billing.html",
+			controller: ""
+		})
 		.otherwise({
 			redirectTo: "/dashboard",
 			controller: "dashboard-ctrl"
