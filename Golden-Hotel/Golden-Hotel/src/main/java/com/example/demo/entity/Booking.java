@@ -54,6 +54,7 @@ public class Booking {
 	@JsonIgnore
 	@OneToMany(mappedBy = "booking")
 	List<Invoice> invoice;
+	private Integer quantity;
 	
 	
 	

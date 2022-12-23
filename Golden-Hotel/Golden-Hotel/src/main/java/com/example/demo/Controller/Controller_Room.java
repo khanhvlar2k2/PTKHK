@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -41,18 +42,23 @@ public class Controller_Room {
 	private LocalDateTime date3;
 	boolean isfilled = true;
 	int isRented = 1;
-	
+	RoomType rtp = new RoomType();
+
 	@GetMapping("")
 	public String Rooms(Model model, HttpServletRequest req) {
 		model.addAttribute("title", "Rooms");
 		//model.addAttribute("title2", "Rooms");
-//		loadData(model, req);
-//		loadroom(model);
+		List<Room> roomList =  (List<Room>) req.getSession().getAttribute("ListRoom");
+		if(roomList.isEmpty())
+		loadData(model, req);
+		rtp = (RoomType) req.getSession().getAttribute("objectneeded");
+		model.addAttribute("obj",rtp);
+		
 		return "room/rooms";
 	}
 
 	@GetMapping("/detail-room/{id}")
-	public String DetailRoom(Model model,@PathVariable("id") int id) { 
+	public String DetailRoom(Model model,@PathVariable("id") int id,HttpSession session) { 
 		RoomType item = daoRTP.findById(id).orElse(new RoomType());
 		List<Gallery> images = serviceGallery.findByGaleryProducttilte(id);
 		RoomType RMTP = daoRTP.findById(id).orElse(new RoomType());
@@ -62,6 +68,7 @@ public class Controller_Room {
 		model.addAttribute("title2",RMTP.getName());
 		model.addAttribute("room2", RMTP);
 		model.addAttribute("available", daoRTP.getAvailableRoom());
+		session.setAttribute("objectneeded", RMTP);
 		return "room/rooms-single";
 	}
 
@@ -71,57 +78,7 @@ public class Controller_Room {
 	}
 
 	protected void loadData(Model model, HttpServletRequest req) {
-		Map<String, String> dataDate = (Map<String, String>) req.getSession().getAttribute("dates");
-		Map<String, String> othersData = (Map<String, String>) req.getSession().getAttribute("othersData");
-		req.getSession().removeAttribute("dates"); // removeSession after taken.
-		req.getSession().removeAttribute("othersData"); // removeSession after taken.
-		RoomType roomtype = new RoomType();
-		String text1 = othersData.keySet().toString().replace("[", "");
-		text1 = text1.replace("]", "");
-		String text2 = othersData.values().toString().replace("[", "");
-		text2 = text2.replace("]", "");
-		roomtype = daoRTP.findById(Integer.parseInt(text1)).get();
-		String name = roomtype.getName();
-		List<RoomType> rtyp = new ArrayList<RoomType>();
-		rtyp = daoRTP.findAll();
-		for (int i = 0; i < rtyp.size(); i++) {
-			if (rtyp.get(i).getName().contains(name)) {
-				rtyp.remove(i);
-			}
-		}
-		if (dataDate.keySet() != null && dataDate.values() != null 
-				&& !dataDate.keySet().toString().trim().equalsIgnoreCase("[]") && !dataDate.values().toString().trim().equalsIgnoreCase("[]")) {
-			String date1 = dataDate.keySet().toString();
-			date1 = date1.replace("[", "");
-			date1 = date1.replace("]", "");
-			date = LocalDateTime.parse(date1);
-			String date2 = dataDate.values().toString();
-			date2 = date2.replace("[", "");
-			date2 = date2.replace("]", "");
-			date3 = LocalDateTime.parse(date2);
-			model.addAttribute("datetake", date);
-			model.addAttribute("dateleave", date3);
-
-		} else {
-			isfilled = false;
-			System.out.println("Please fill all field ");
-		}
-
-		model.addAttribute("roomname", name);
-		model.addAttribute("types", rtyp);
-		model.addAttribute("adultquantity", text2);
-		model.addAttribute("roomtype", text1);
-		List<Room> room = new ArrayList<Room>();
-		List<Room> room2  =  dao.findbyCondition(name);
-		room = dao.findRoom(roomtype.getType());
-		if(room.size()+1>0 && room.size()+1>=Integer.parseInt(text2)) {
-			model.addAttribute("qleft",room.size()+1);
-			model.addAttribute("rooms",room2.get(0));
-		}else {
-			room2 = new ArrayList<Room>();
-			model.addAttribute("rooms",room2);
-			model.addAttribute("messagesss","No Room are available");
-		}
+	
 
 
 	}

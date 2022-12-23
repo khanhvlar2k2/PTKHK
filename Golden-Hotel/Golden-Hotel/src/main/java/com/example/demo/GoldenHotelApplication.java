@@ -38,13 +38,26 @@ public class GoldenHotelApplication {
 		    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 				LocalDateTime now = LocalDateTime.now();
 				List<Booking> listBK = daoBooking.findAll();
+				
 				if(listBK.get(0).getDeparturedate()!=null) {
 				for (int i = 0; i < listBK.size(); i++) {
 					int diff = now.compareTo(listBK.get(i).getDeparturedate());
-					if(diff>0 ) {
+					int diff2 = now.compareTo(listBK.get(i).getArrivaldate());
+
+					if(diff>0 && listBK.get(i).getRoom().getStatus()!=0 ) {
 						Room room = new Room();
 						room.setStatus(0);
+						room.setId(listBK.get(i).getRoom().getId());
 						roomBooking.save(room);
+					}
+					else if(diff2 >=0 && listBK.get(i).getRoom().getStatus()==0) {
+						Room room = new Room();
+						room.setStatus(1);
+						room.setId(listBK.get(i).getRoom().getId());
+						roomBooking.save(room);
+						Booking bk = new Booking();
+						bk.setId(listBK.get(i).getId());
+						daoBooking.delete(bk);
 					}
 				}}
 		    }

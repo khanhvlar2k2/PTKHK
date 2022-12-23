@@ -14,6 +14,8 @@
 					<div class="row">
 						<div class="col-md-12 ftco-animate">
 							<h2 class="mb-4" th:text="${room2.name}">Family Room</h2>
+							<p><span class="price mr-2">[[${room2.price}]] $</span> <span class="per">per
+													night</span></p>
 							<div class="single-slider owl-carousel">
 								<div class="item" th:each="images : ${images}">
 									<img class="room-img"  th:src="@{|/rooms/${images.thumbnail}|}"alt="">
@@ -74,7 +76,7 @@
 								  
 								</div>
 								<div class="col-md-3">
-								     <a href="" style="background-color:#26648E; color: white ; padding:15px;">Booking Now</a>
+								     <a href="/home/index/checkout" style="background-color:#26648E; color: white ; padding:15px;">Booking Now</a>
 										
 									 
 								</div>
@@ -121,11 +123,7 @@
 						<div class="categories">
 							<h3>Categories</h3>
 							<li><a href="#">Properties <span>(12)</span></a></li>
-							<li><a href="#">Home <span>(22)</span></a></li>
-							<li><a href="#">House <span>(37)</span></a></li>
-							<li><a href="#">Villa <span>(42)</span></a></li>
-							<li><a href="#">Apartment <span>(14)</span></a></li>
-							<li><a href="#">Condominium <span>(140)</span></a></li>
+						
 						</div>
 					</div>
 
@@ -185,7 +183,7 @@
 
 					<div class="sidebar-box ftco-animate">
 						<h3>Paragraph</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem
+						<p th:text="${room2.roomdesc}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem
 							necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente
 							consectetur similique, inventore eos fugit cupiditate numquam!</p>
 					</div>

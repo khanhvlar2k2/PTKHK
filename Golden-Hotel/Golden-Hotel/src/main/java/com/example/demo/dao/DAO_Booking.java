@@ -19,4 +19,7 @@ public interface DAO_Booking extends JpaRepository<Booking, Integer> {
 //      		+ "o.estcheckout,o.description "
 //      		+ "from  Booking o full join Room i on o.room.id = i.id")
 //      public List<Booking> getFullDataRoom();
+     
+     @Query(value="select * from booking where roomid = ?1",nativeQuery = true)
+     public List<Booking> findBookingbyRoom(int id);
 }
