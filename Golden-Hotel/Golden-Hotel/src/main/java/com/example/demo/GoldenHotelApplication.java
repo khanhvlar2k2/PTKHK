@@ -39,7 +39,7 @@ public class GoldenHotelApplication {
 				LocalDateTime now = LocalDateTime.now();
 				List<Booking> listBK = daoBooking.findAll();
 				
-				if(listBK.get(0).getDeparturedate()!=null) {
+				if(listBK!=null) {
 				for (int i = 0; i < listBK.size(); i++) {
 					int diff = now.compareTo(listBK.get(i).getDeparturedate());
 					int diff2 = now.compareTo(listBK.get(i).getArrivaldate());
@@ -60,6 +60,7 @@ public class GoldenHotelApplication {
 						daoBooking.delete(bk);
 					}
 				}}
+				
 		    }
 		});
 	}

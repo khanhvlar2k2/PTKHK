@@ -27,8 +27,8 @@ public interface DAO_Room extends JpaRepository<Room, Integer>
     @Query("select r from Room r where r.status =?1")
     public List<Room> getDataStatus(int status);
     
-    @Query(value="select * from room r full join Booking n on r.id = n.roomID where roomtype=? and (ArrivalDate < ? or DepartureDate > ? or ArrivalDate is null)", nativeQuery=true)
-    public List<Room> queryRoom(String date1, String date2);
+    @Query(value="select * from room r full join Booking n on r.id = n.roomID where r.roomtype=?1 and (n.ArrivalDate < ?2 or n.DepartureDate > ?3 or n.ArrivalDate is null)", nativeQuery=true)
+    public List<Room> queryRoom(String type,String date1, String date2);
     
 
     

@@ -49,7 +49,13 @@ public class Controller_Room {
 		model.addAttribute("title", "Rooms");
 		//model.addAttribute("title2", "Rooms");
 		List<Room> roomList =  (List<Room>) req.getSession().getAttribute("ListRoom");
-		if(roomList.isEmpty())
+		if(roomList!=null) {
+			model.addAttribute("roomFound",roomList);
+		}else {
+			roomList = dao.findAll();
+			model.addAttribute("roomFound",roomList);
+
+		}
 		loadData(model, req);
 		rtp = (RoomType) req.getSession().getAttribute("objectneeded");
 		model.addAttribute("obj",rtp);

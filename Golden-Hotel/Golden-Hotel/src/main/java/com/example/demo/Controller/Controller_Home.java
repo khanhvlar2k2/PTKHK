@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,13 +23,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dao.DAO_Booking;
+import com.example.demo.dao.DAO_Gallery;
 import com.example.demo.dao.DAO_Guest;
 import com.example.demo.dao.DAO_Room;
 import com.example.demo.dao.DAO_RoomType;
+import com.example.demo.dao.FeedBackDAO;
 import com.example.demo.entity.Booking;
 import com.example.demo.entity.Guest;
+import com.example.demo.entity.HotelFeedback;
 import com.example.demo.entity.Room;
 import com.example.demo.entity.RoomType;
+import com.example.demo.service.MailTemPlate;
+import com.example.demo.service.MailerService;
 import com.nimbusds.oauth2.sdk.http.HTTPRequest;
 
 @Controller
@@ -50,6 +56,15 @@ public class Controller_Home {
 	@Autowired
 	DAO_Room dao;
 	
+	@Autowired
+	DAO_Gallery daoGLR;
+	
+	@Autowired
+	MailerService mailer;
+	
+	@Autowired
+	FeedBackDAO feedbackDAO;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -62,7 +77,7 @@ public class Controller_Home {
 	public String home(Model model) {
 		model.addAttribute("title", "Home");
 		model.addAttribute("types", daoRTP.findAll());
-		model.addAttribute("items", daoRTP.getRoombyViews());
+		model.addAttribute("itemss", daoRTP.getRoombyViews());
 		return "home/index";
 	}
 
@@ -78,16 +93,17 @@ public class Controller_Home {
 		othersData.put(roomType, Quantity);
 		session.setAttribute("dates", dataDate);
 		session.setAttribute("othersData", othersData);
-		List<Room> room = dao.queryRoom(dateTake,dateLeave);
+		List<Room> room = dao.queryRoom(roomType,dateTake,dateLeave);
 		session.setAttribute("ListRoom", room);
 		System.out.println(dataDate.keySet());
 		return "redirect:/home/index/rooms";
 	}
-
-	@GetMapping("/contact")
+	@GetMapping("/feedback")
 	public String contact(Model model) {
-		model.addAttribute("title", "Contact");
-		model.addAttribute("title2", "Contact Us");
+		model.addAttribute("title", "FeedBack");
+		model.addAttribute("title2", "FeedBack Us");
+        model.addAttribute("feedbackhotel", new HotelFeedback());
+
 		return "home/contact";
 	}
 	@GetMapping("/about")
@@ -120,7 +136,9 @@ public class Controller_Home {
 		model.addAttribute("title2", "Check Out");
 		model.addAttribute("types", daoRTP.findAll());
 		rtp = (RoomType) req.getSession().getAttribute("objectneeded");
-		model.addAttribute("obj",rtp);
+		if(rtp!=null) {
+			model.addAttribute("obj",rtp);
+		}
 		//loadData(model, req);
 		return "checkout/checkout";
 	}
@@ -210,5 +228,11 @@ public class Controller_Home {
 		
 
 
+	}
+	@PostMapping("/handleFeedback")
+	protected String handleFeedback(HotelFeedback htlFeedback) throws MessagingException {
+		feedbackDAO.save(htlFeedback);
+		mailer.send(htlFeedback.getEmail(), "THANK YOU FOR YOUR FEEDBACK" , MailTemPlate.FEEDBACKTEMPLATE);
+		return "redirect:/home/index";
 	}
 }

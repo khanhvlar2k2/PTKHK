@@ -6,20 +6,19 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm col-md-6 col-lg-4 ftco-animate" th:each="items : ${types}">
+			<div class="col-sm col-md-6 col-lg-4 ftco-animate" th:each="item : ${itemss}">
 				<div class="room">
-					<a href="rooms.html" class="img d-flex justify-content-center align-items-center"
-						style="background-image: url(../rooms/deluxe1.jpg)">
-
+					<a href="rooms.html" th:href="@{|/home/index/rooms/detail-room/${item.type}|}" class="img d-flex justify-content-center align-items-center"
+						th:style="'background-image: url('+@{|${item.gallery[0].thumbnail}|}+');'">
 						<div class="icon d-flex justify-content-center align-items-center">
 							<span class="icon-search2"></span>
 						</div>
 					</a>
 					<div class="text p-3 text-center">
-						<h3 class="mb-3"><a href="rooms.html">[[${items.name}]]</a></h3>
-						<p><span class="price mr-2">$[[${items.price}]]</span> <span class="per">per night</span></p>
+						<h3 class="mb-3"><a th:href="@{|/home/index/rooms/detail-room/${item.type}|}">[[${item.name}]]</a></h3>
+						<p><span class="price mr-2">$[[${item.price}]]</span> <span class="per">per night</span></p>
 						<hr>
-						<p class="pt-1"><a th:href="@{|/home/index/rooms/detail-room/${items.type}|}"
+						<p class="pt-1"><a th:href="@{|/home/index/rooms/detail-room/${item.type}|}"
 								class="btn-custom">View Room Details <span class="icon-long-arrow-right"></span></a></p>
 					</div>
 				</div>

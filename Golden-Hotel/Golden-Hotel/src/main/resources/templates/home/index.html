@@ -51,7 +51,7 @@
 									<div class="wrap">
 										<label for="#">Check-in Date</label> 
 										<input class="input-text" style="border: 0px;"
-											type="datetime-local" name="dateRe" id="input_data_name" />
+											type="date" name="dateRe" id="input_data_name" />
 
 									</div>
 								</div>
@@ -61,7 +61,7 @@
 									class="form-group p-4 align-self-stretch d-flex align-items-end">
 									<div class="wrap">
 										<label for="#">Check-out Date</label> <input
-											class="input-text" style="border: 0px;" name="dateLe" type="datetime-local"
+											class="input-text" style="border: 0px;" name="dateLe" type="date"
 											value="">
 									</div>
 								</div>
@@ -77,7 +77,7 @@
 													<span class="ion-ios-arrow-down"></span>
 												</div>
 												 <select class="input-text" name="roomtp" style="border: 0px;">
-              	  <option th:each="i : ${types}" th:value="${i.type}" th:text="${i.name}"></option>
+              									  <option th:each="i : ${types}" th:value="${i.type}" th:text="${i.name}"></option>
 												</select>
 											</div>
 										</div>
@@ -103,8 +103,7 @@
 							</div>
 							<div class="col-md d-flex">
 								<div class="form-group d-flex align-self-stretch">
-									<a  th:href="@{|/home/index/rooms|}" 
-										class="btn btn-primary py-3 px-4 align-self-stretch">Check Availability</a>
+									<button class="btn btn-primary py-3 px-4 align-self-stretch" formmethod="post" formaction="/handle">Check Availability</button>
 								</div>
 							</div>
 						</div>

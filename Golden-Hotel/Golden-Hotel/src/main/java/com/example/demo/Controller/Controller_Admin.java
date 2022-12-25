@@ -118,12 +118,10 @@ public class Controller_Admin {
 					+ "                                                    <td class=\"es-hidden\" width=\"20\"></td>"
 					+ "                                                </tr>"
 					+ "                                            </table> ";
-			System.out.println(test);
 
 		}
 		for (int i = 0; i < list.size(); i++) {
 			try {
-				System.out.println(list.get(i).getEmail());
 				mailer.send(list.get(i).getEmail(), "GOLDEN HOTEL", "<!doctype html>" + "<html email data-css-strict >"
 						+ "" + "<head>" + "<script\r\n"
 						+ "	src=\"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js\"\r\n"
