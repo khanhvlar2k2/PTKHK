@@ -63,6 +63,9 @@ input:checked+.slider:before {
 	background-color: #0c2333;
 	color: white;
 }
+select,option{
+  text-transform: uppercase;
+}
 </style>
 <div class="container-fluid py-4">
 	<div class="row">
@@ -114,10 +117,21 @@ input:checked+.slider:before {
 												<label for="inputCity">Price</label>
 												<div class="input-group-prepend">
 													<input type="number" class="form-control"
-														placeholder="Salary" ng-model="form.rtype.price"
+														placeholder="Price has dropped " ng-model="form.rtype.price*(100-form.rtype.sale)/100"
 														disabled="disabled"><span class="input-group-text">VND</span>
 												</div>
-
+											</div>
+											<div class="form-group col-md-12">
+												<label for="inputCity">Status</label> <select
+													ng-model="form.status" class="form-control" id="sel1"
+													name="sellist1">
+													<option  ng-value="0">EMPTY</option>
+													<option  ng-value="1">Received</option>
+													<option  ng-value="2">BOOKING</option>
+													<option  ng-value="3">Canceled</option>
+													<option  ng-value="4">Repairing</option>
+													<option  ng-value="5">Expired</option>
+												</select>
 											</div>
 											<div class="form-group col-md-12">
 												<button type="submit" class="btn btn-outline-secondary"
@@ -126,8 +140,6 @@ input:checked+.slider:before {
 													ng-click="create()">Save</button>
 												<button type="submit" class="btn btn-outline-dark"
 													ng-click="update()">Update</button>
-												<button type="submit" class="btn btn-outline-danger"
-													ng-click="delete(form.id)">Delete</button>
 											</div>
 										</div>
 									</div>
@@ -149,9 +161,9 @@ input:checked+.slider:before {
 								</div>
 								<div style="overflow: auto; height: 500px;">
 									<div class="card" ng-repeat="item in items |filter:searchR"
-										ng-click="edit(item)"
+										
 										style="width: 100% !important; margin: 20px auto; padding: 10px;">
-										<div class="card-header p-3 pt-2">
+										<div class="card-header p-3 pt-2" ng-click="edit(item)">
 											<div style="background: #002c3e"
 												class="icon icon-lg icon-shape  text-center border-radius-xl mt-n4 position-absolute">
 												<h5
@@ -184,9 +196,12 @@ input:checked+.slider:before {
 										<hr class="dark horizontal my-0">
 										<div class="card-footer p-3">
 											<p class="mb-0" id="timedate">
-												<span style="font-weight: 700;">{{item.rtype.price}}VND</span>&emsp;&emsp;&emsp;&emsp;
-												&emsp; <a href="" ng-click="delete(item)"
-													style="text-decoration: underline; color: red; font-size: 12px; text-transform: capitalize;">Remove</a>
+												<span style="font-weight: 700;">{{item.rtype.price*(100-item.rtype.sale)/100}}VND</span>&emsp;&emsp;&emsp;&emsp;
+												&emsp;
+												&emsp; <a href="" ng-click="edit(item)"
+													style="text-decoration: underline;  font-size: 13px; text-transform: capitalize;">Edit</a>
+												 <a href="" ng-click="delete(item)"
+													style="text-decoration: underline; color: red; font-size: 13px; text-transform: capitalize;">Remove</a>
 											</p>
 										</div>
 									</div>

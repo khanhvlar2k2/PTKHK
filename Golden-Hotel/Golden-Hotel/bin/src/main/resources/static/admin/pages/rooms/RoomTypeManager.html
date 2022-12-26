@@ -1,76 +1,76 @@
 <style>
-.switch {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
-}
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 60px;
+		height: 34px;
+	}
 
-.switch input {
-	opacity: 0;
-	width: 0;
-	height: 0;
-}
+	.switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
 
-.slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #ccc;
-	-webkit-transition: .4s;
-	transition: .4s;
-}
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
 
-.slider:before {
-	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: white;
-	-webkit-transition: .4s;
-	transition: .4s;
-}
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 26px;
+		width: 26px;
+		left: 4px;
+		bottom: 4px;
+		background-color: white;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
 
-input:checked+.slider {
-	background-color: #2196F3;
-}
+	input:checked+.slider {
+		background-color: #2196F3;
+	}
 
-input:focus+.slider {
-	box-shadow: 0 0 1px #2196F3;
-}
+	input:focus+.slider {
+		box-shadow: 0 0 1px #2196F3;
+	}
 
-input:checked+.slider:before {
-	-webkit-transform: translateX(26px);
-	-ms-transform: translateX(26px);
-	transform: translateX(26px);
-}
+	input:checked+.slider:before {
+		-webkit-transform: translateX(26px);
+		-ms-transform: translateX(26px);
+		transform: translateX(26px);
+	}
 
-/* Rounded sliders */
-.slider.round {
-	border-radius: 34px;
-}
+	/* Rounded sliders */
+	.slider.round {
+		border-radius: 34px;
+	}
 
-.slider.round:before {
-	border-radius: 50%;
-}
+	.slider.round:before {
+		border-radius: 50%;
+	}
 
-.input-group-text {
-	background-color: #0c2333;
-	color: white;
-}
+	.input-group-text {
+		background-color: #0c2333;
+		color: white;
+	}
+	
 </style>
 <div class="container-fluid py-4">
 	<div class="row">
 		<div class="col-12">
 			<div class="card my-4">
 				<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-					<div
-						class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+					<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
 						<h6 class="text-white text-capitalize ps-3">ROOM TYPE
 							MANAGERMENT</h6>
 					</div>
@@ -94,7 +94,7 @@ input:checked+.slider:before {
 											<div class="form-group ">
 												<label for="inputEmail4">ID</label> <input type="text"
 													class="form-control" id="inputEmail4" placeholder="ID"
-													ng-model="form.type" disabled="disabled" >
+													ng-model="form.type" disabled="disabled">
 											</div>
 											<div class="form-group ">
 												<label for="inputPassword4">Name</label> <input type="text"
@@ -107,11 +107,15 @@ input:checked+.slider:before {
 											<div class="form-group ">
 												<label for="inputCity">Price</label>
 												<div class="input-group-prepend">
-													<input type="number" class="form-control"
-														placeholder="Salary" ng-model="form.price"><span
-														class="input-group-text">VND</span>
+													<input type="number" class="form-control" placeholder="Salary"
+														ng-model="form.price"><span class="input-group-text">VND</span>
 												</div>
 
+											</div>
+											<div class="form-group ">
+												<label for="inputPassword4">Discount</label> <input type="text"
+													class="form-control" id="inputPassword4" placeholder="Discount..."
+													ng-model="form.sale">
 											</div>
 											<div class="form-group">
 												<label for="comment">Description:</label>
@@ -125,23 +129,21 @@ input:checked+.slider:before {
 												ng-click="create()">Save</button>
 											<button type="submit" class="btn btn-outline-dark"
 												ng-click="update()">Update</button>
-											<button type="submit" class="btn btn-outline-danger"
-												ng-click="delete()">Delete</button>
 
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-7 col-md-7">
-									<div class="card ">
-										<div class="card-body p-3">
+									<div class="card "style="height:auto;">
+										<div class="card-body p-3" style="height:auto;">
 											<h3 style="text-align: center; font-weight: 800;">EDIT
 												PHOTO</h3>
-											<div  >
-												<div class="form-row ">
+											<div>
+												<div class="form-row " style="height:auto;">
 													<div class="form-group col-md-6">
 														<img class="image-content-image d-block rounded"
-															style="width: 100%; height: 170px;"
-															ng-src="../room/empty.jpg" alt="user-avatar"> <br>
+															style="width: 100%; height: 200px;"
+															ng-src="../rooms/empty.jpg" alt="user-avatar"> <br>
 														<input class="form-control" type="file" name="photofile"
 															id="formFile" accept="image/png, image/jpeg"
 															onchange="angular.element(this).scope().imageChanged(this.files)" />
@@ -149,20 +151,20 @@ input:checked+.slider:before {
 													</div>
 													<div class="form-group col-md-6">
 														<img class="image-content-image d-block rounded"
-															style="width: 100%; height: 170px;"
-															ng-src="../room/empty.jpg" " alt="user-avatar"> <br>
+															style="width: 100%; height: 200px;"
+															ng-src="../rooms/empty.jpg" alt="user-avatar"> <br>
 														<input class="form-control" type="file" name="photofile"
 															id="formFile" accept="image/png, image/jpeg"
 															onchange="angular.element(this).scope().imageChanged(this.files)" />
 
 													</div>
-
-												</div>
-												<div class="form-row">
+													
+													
+													
 													<div class="form-group col-md-6">
 														<img class="image-content-image d-block rounded"
-															style="width: 100%; height: 170px;"
-															src="../room/empty.jpg" " alt="user-avatar"> <br>
+															style="width: 100%; height: 200px;"
+															ng-src="../rooms/empty.jpg" alt="user-avatar"> <br>
 														<input class="form-control" type="file" name="photofile"
 															id="formFile" accept="image/png, image/jpeg"
 															onchange="angular.element(this).scope().imageChanged(this.files)" />
@@ -170,14 +172,13 @@ input:checked+.slider:before {
 													</div>
 													<div class="form-group col-md-6">
 														<img class="image-content-image d-block rounded"
-															style="width: 100%; height: 170px;"
-															ng-src="../room/empty.jpg" " alt="user-avatar"> <br>
+															style="width: 100%; height: 200px;"
+															ng-src="../rooms/empty.jpg" alt="user-avatar"> <br>
 														<input class="form-control" type="file" name="photofile"
 															id="formFile" accept="image/png, image/jpeg"
 															onchange="angular.element(this).scope().imageChanged(this.files)" />
 
 													</div>
-
 												</div>
 
 											</div>
@@ -198,13 +199,11 @@ input:checked+.slider:before {
 	</div>
 </div>
 <div class="row">
-	<div class="col-6" ng-repeat="item in items" ng-click="edit(item)">
+	<div class="col-12" ng-repeat="item in items" ng-click="edit(item)">
 		<div class="card my-4">
 			<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-				<div
-					class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-					<h6 class="text-white text-capitalize ps-3"
-						style="text-align: center;">
+				<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+					<h6 class="text-white text-capitalize ps-3" style="text-align: center;">
 						<span style="text-transform: uppercase;">{{item.name}}</span>
 					</h6>
 				</div>
@@ -214,8 +213,17 @@ input:checked+.slider:before {
 					<p>{{item.roomdesc}}</p>
 				</div>
 				<div class="price mx-3">
-					<p style="text-align: center; font-size: 20px;">
-						{{item.price}}<span style="font-size: 12px">VND</span>
+					<p style="text-align: center; font-size: 20px; font-weight:700;" ng-if="item.sale > 0">
+						{{item.price*(100-item.sale)/100}}<span style="font-size: 12px">VND</span>  
+						<del style="font-size: 15px; color:red; font-weight:900;">{{item.price}}VND</del>
+					</p>
+					<p style="text-align: center; font-size: 20px ;  font-weight:700;" ng-if="item.sale == 0">
+						{{item.price}}<span style="font-size: 12px;">VND</span>
+					</p>
+					<p class="mb-0" id="timedate">
+
+						<h6 ng-click="delete(item)"
+							style="text-align: right; text-decoration: underline; color: red; font-size: 12px; text-transform: capitalize; ">Remove</h6>
 					</p>
 				</div>
 
@@ -230,30 +238,22 @@ input:checked+.slider:before {
 				<div class="copyright text-center text-sm text-muted text-lg-start">
 					©
 					<script>
-                                    document.write(new Date().getFullYear())
-                                </script>
-					, made with <i class="fa fa-heart"></i> by <a href=""
-						class="font-weight-bold" target="_blank">Golden Hotel</a> for a
+						document.write(new Date().getFullYear())
+					</script>
+					, made with <i class="fa fa-heart"></i> by <a href="" class="font-weight-bold"
+						target="_blank">Golden Hotel</a> for a
 					better web.
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<ul
-					class="nav nav-footer justify-content-center justify-content-lg-end">
-					<li class="nav-item"><a href="" class="nav-link text-muted"
-						target="_blank">Golden Hotel</a></li>
-					<li class="nav-item"><a href="" class="nav-link text-muted"
-						target="_blank">About Us</a></li>
-					<li class="nav-item"><a href="/blog"
-						class="nav-link text-muted" target="_blank">Blog</a></li>
-					<li class="nav-item"><a href="/license"
-						class="nav-link pe-0 text-muted" target="_blank">License</a></li>
+				<ul class="nav nav-footer justify-content-center justify-content-lg-end">
+					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">Golden Hotel</a></li>
+					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">About Us</a></li>
+					<li class="nav-item"><a href="/blog" class="nav-link text-muted" target="_blank">Blog</a></li>
+					<li class="nav-item"><a href="/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </footer>
-
-
-
-

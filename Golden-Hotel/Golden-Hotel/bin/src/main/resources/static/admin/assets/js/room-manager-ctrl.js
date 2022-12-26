@@ -21,11 +21,19 @@ app.controller("room-manager-ctrl", function($scope, $http, $location) {
 			//reset form
 	$scope.reset = function(){
 		$scope.form = {
-
+             status: 0
 		}
 	}
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
+		$.toast({
+				text: 'Edit Room  '+'<b>' +item.name +'</b>'+' successful',
+				heading: 'Edit Information',
+				showHideTransition: 'plain',
+				icon: 'info', 
+				position: 'top-right',
+				textAlign: 'left'
+			})
 	}
 	$scope.create = function() {
 		var item = angular.copy($scope.form);

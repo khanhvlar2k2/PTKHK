@@ -1,10 +1,10 @@
 app.controller("account-ctrl", function($scope, $http, $location) {
+	$scope.authorities = [];
 	$scope.items = [];
 	$scope.form = {};
 	$scope.hotels = [];
 	$scope.roles = [];
 	$scope.selection = [];
-	$scope.authorities = [];
 	$scope.initialize = function() {
 
 		//load all roles
@@ -12,7 +12,11 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 			$scope.roles = resp.data;
 			console.log(resp.data);
 		});
-		$scope.loadaccount(); //load workplace
+		$http.get("/rest/accounts").then(resp => {
+			$scope.items = resp.data;
+			console.log(resp.data);
+		})
+	
 		//load authorities of staffs and directors
 		$http.get("/rest/authorities?admin=true").then(resp => {
 			$scope.authorities = resp.data;
@@ -21,40 +25,52 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 		})
 
 	}
-	$scope.loadaccount = function() {
-		//load accounts
-		$http.get("/rest/accounts").then(resp => {
-			$scope.items = resp.data;
-			console.log(resp.data);
-		})
-	}
+    $scope.tab = function(tab) {
+        document.getElementById(tab).click();
+    }
+
 	//Chọn roles
-	$scope.toggleRole = function(role) {
+	$scope.toggleRole = function(role){
 		var compareElement = -1;
 		var idx = $scope.selection.indexOf(role);
 		console.log(idx);
 		//Currently Selected
-		if (idx > -1) {
-			$scope.selection.splice(idx, 1);
+		if(idx>-1){
+			$scope.selection.splice(idx,1);
 		}
 		//Is newly added
-		else {
+		else{
 			$scope.selection.push(role);
 		}
 	}
 	//Load Roles on form by clicking Edit
-	$scope.getOneByRole = function(id) {
-		$http.get(`/rest/authoritiesOne?id=${id}`).then(resp => {
+	$scope.getOneByRole = function(id){
+		$http.get(`/rest/authoritiesOne?id=${id}`).then(resp=>{
 			$scope.selection = [];
-			$scope.roles.forEach(e => {
-				resp.data.forEach(e1 => {
-					if (e.name == e1.role.name) {
+			$scope.roles.forEach(e=>{
+				resp.data.forEach(e1=>{
+					if(e.name == e1.role.name){
 						$scope.selection.push(e);
 					}
 				})
 			})
 		})
 	}
+	//Hiển thị lên form
+	$scope.edit = function(item) {
+		$scope.form = angular.copy(item);
+		$scope.getOneByRole(item.id);
+		$.toast({
+				text: 'Edited account '+'<b>' +$scope.form.fullname+'</b>' +' successful',
+				heading: 'Edit Information',
+				showHideTransition: 'plain',
+				icon: 'info', 
+				position: 'bottom-right',
+				textAlign: 'left'
+		})
+		$scope.tab('tab2');
+	}
+
 	//reset form
 	$scope.reset = function() {
 		
@@ -68,20 +84,18 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/accountsManage`, item).then(resp => {
 			$scope.items.push(resp.data);
-			console.log(resp.data);
-			
+			console.log(resp.data);	
 			//thêm phân quyền
 			$scope.selection.forEach(r => {
-				var authority = { account: item, role: r };
-				$http.post(`/rest/authorities`, authority).then(resp => {
-					$scope.items.push(resp.data);
-				}).catch(err => {
-					console.log("Error ", err);
+					var authority = { employee:item, role:r };
+					$http.post(`/rest/authorities`, authority).then(resp => {
+						$scope.items.push(resp.data);
+					}).catch(err => {
+						console.log("Error ", err);
+					})
 				})
-				
-			})
 			$.toast({
-				text: 'Add New Account Success  ' +item.fullname,
+				text: 'Add New Account Success  ' +'<b>' +item.fullname +'</b>',
 				heading: 'Create Information',
 				showHideTransition: 'plain',
 				icon: 'success', 
@@ -93,7 +107,7 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 		}).catch(err => {
 			console.log("Error ", err);
 			$.toast({
-				text: 'Add new account failed  ' +$scope.form.fullname,
+				text: 'Add new account failed  ' +'<b>' +$scope.form.fullname +'</b>',
 				heading: 'Created Information',
 				showHideTransition: 'plain',
 				icon: 'error', 
@@ -126,7 +140,7 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 
 
 			$.toast({
-				text: 'Updated Account' +item.fullname +' successful',
+				text: 'Updated Account '+'<b>' +item.fullname +'</b>' +' successful',
 				heading: 'Update Information',
 				showHideTransition: 'plain',
 				icon: 'success', 
@@ -144,29 +158,15 @@ app.controller("account-ctrl", function($scope, $http, $location) {
 
 	}
 
-	//Hiển thị lên form
-	$scope.edit = function(item) {
-		$scope.form = angular.copy(item);
-		$scope.getOneByRole(item.id);
-		$.toast({
-				text: 'Edited account ' +$scope.form.fullname +' successful',
-				heading: 'Edit Information',
-				showHideTransition: 'plain',
-				icon: 'info', 
-				position: 'bottom-right',
-				textAlign: 'left'
-		})
-	}
-
-
 	//Remove account
 	$scope.delete = function(item) {
+		
 		$http.delete(`/rest/accounts/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.reset();
 			$.toast({
-				text: 'Deleted account ' + item.fullname +' successful',
+				text: 'Deleted account '+'<b>'+ item.fullname +'</b>'+' successful',
 				heading: 'Delete Information',
 				showHideTransition: 'plain',
 				icon: 'error', 

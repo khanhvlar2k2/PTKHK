@@ -23,7 +23,8 @@ import lombok.NoArgsConstructor;
 @Table(name="Role")
 @Data
 public class Role {
-	@Id	
+	@Id
+	
 	private String id;
 	private String name;
 	@JsonIgnore

@@ -82,28 +82,32 @@
 						<h6 class="text-white text-capitalize ps-3">STAFF MANAGERMENT</h6>
 					</div>
 				</div>
-				<div class="container-fluid px-2 px-md-4">
+				<div class="container-fluid px-2 px-md-4 tab2">
 					<div class="page-header min-height-100 border-radius-xl mt-4">
 
 					</div>
 					<div class="card card-body mx-3 mx-md-4 mt-n6">
 
-						<form>
+						<form >
 							<div class="row">
 
 								<div class="col-12 col-xl-8">
 									<h3 style="text-align: center; font-weight: 800;">USER
 										INFORMATION</h3>
 									<div class="card card-plain h-120">
-
+                                          
 										<div class="card-body p-3">
 
 											<div class="form-row">
+											
 												<div class="form-group col-md-6">
 													<label for="inputEmail4">Fullname</label> <input type="text"
 														class="form-control" id="inputEmail4" placeholder="Name"
-														ng-model="form.fullname">
+														ng-model="form.fullname" >
+												
 												</div>
+												
+					
 												<div class="form-group col-md-6">
 													<label for="inputPassword4">Password</label> <input type="password"
 														class="form-control" id="inputPassword4" placeholder="Password"
@@ -198,7 +202,7 @@
 												<div class="col-sm-10">
 													<div class="form-check form-check-inline mb-2 mt-1"
 														ng-repeat="r in roles">
-														<input class="form-check-input" type="checkbox" id="{{r.name}}"
+														<input class="form-check-input" disabled="true" type="checkbox" id="{{r.name}}"
 															ng-checked="selection.indexOf(r)>-1"
 															ng-click="toggleRole(r)" ng-value="r"
 															ng-model="selectedRole" /> <label class=""
@@ -234,14 +238,7 @@
 			<div class="card-body px-0 pb-2">
 				<div class="table-responsive p-0">
 					<div class="row">
-						<div class="col-sm-2">
-							<select id="sendNotification" class="form-select" ng-model="a.id" ng-change="getAu(a.id)"
-								name="sendNotification">
-								<option ng-value="" selected="selected">All</option>
-								<option ng-repeat="r in roles" ng-value="r.id">{{r.name}}</option>
-							</select>
-						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-4" style="margin-left:20px">
 							<input type="text" ng-model="searchEmp" class="form-control" placeholder="Search.......">
 						</div>
 					</div> <br>
@@ -312,7 +309,8 @@
 						</tbody>
 					</table>
 				</div>
-				<div>
+				<div  class="justify-content-center mt-2 mb-2 w-100"
+					style="text-align: center;">
 					<button ng-click="pager.first()" class="btn btn-info">
 						<span class="material-icons"> first_page </span>
 					</button>
