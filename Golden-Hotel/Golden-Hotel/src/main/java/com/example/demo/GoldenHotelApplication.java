@@ -52,7 +52,7 @@ public class GoldenHotelApplication {
 					}
 					else if(diff2 >=0 && listBK.get(i).getRoom().getStatus()==0) {
 						Room room = new Room();
-						room.setStatus(1);
+						room.setStatus(3);
 						room.setId(listBK.get(i).getRoom().getId());
 						roomBooking.save(room);
 						Booking bk = new Booking();

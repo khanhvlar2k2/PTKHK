@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dao.DAO_Booking;
+import com.example.demo.dao.DAO_Empolyee;
 import com.example.demo.dao.DAO_Gallery;
 import com.example.demo.dao.DAO_Guest;
 import com.example.demo.dao.DAO_Room;
@@ -65,6 +66,9 @@ public class Controller_Home {
 	@Autowired
 	FeedBackDAO feedbackDAO;
 	
+	@Autowired
+	DAO_Empolyee employeeDAO;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -78,6 +82,10 @@ public class Controller_Home {
 		model.addAttribute("title", "Home");
 		model.addAttribute("types", daoRTP.findAll());
 		model.addAttribute("itemss", daoRTP.getRoombyViews());
+		model.addAttribute("countFeedback",feedbackDAO.getGoodFeedback());
+		model.addAttribute("countRoom",roomDAO.getCountRoom());
+		model.addAttribute("countEmployee",employeeDAO.getEmpolyeeCount());
+
 		return "home/index";
 	}
 
@@ -106,10 +114,20 @@ public class Controller_Home {
 
 		return "home/contact";
 	}
+	@GetMapping("/cusfeedback")
+	public String cusfeedback(Model model,HotelFeedback htlfback) {
+		model.addAttribute("title", " Customer Feedback");
+		model.addAttribute("title2", "FeedBacks");
+		model.addAttribute("hotelfeedbacks",feedbackDAO.findAll());
+		return "home/cusfeedback";
+	}
 	@GetMapping("/about")
 	public String room(Model model) {
 		model.addAttribute("title", "About");
 		model.addAttribute("title2", "About Us");
+		model.addAttribute("countFeedback",feedbackDAO.getGoodFeedback());
+		model.addAttribute("countRoom",roomDAO.getCountRoom());
+		model.addAttribute("countEmployee",employeeDAO.getEmpolyeeCount());
 		return "home/about";
 	}
 	@GetMapping("/restaurant")
@@ -232,7 +250,12 @@ public class Controller_Home {
 	@PostMapping("/handleFeedback")
 	protected String handleFeedback(HotelFeedback htlFeedback) throws MessagingException {
 		feedbackDAO.save(htlFeedback);
+		if(htlFeedback.getRating()<3) {
+			mailer.send(htlFeedback.getEmail(), "THANK YOU FOR YOUR FEEDBACK BUT SORRY FOR THE BAD EXPERIENCES" , MailTemPlate.FEEDBACKTEMPLATE);
+
+		}else {
 		mailer.send(htlFeedback.getEmail(), "THANK YOU FOR YOUR FEEDBACK" , MailTemPlate.FEEDBACKTEMPLATE);
+		}
 		return "redirect:/home/index";
 	}
 }

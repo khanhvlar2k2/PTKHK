@@ -26,7 +26,7 @@ public class Gallery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String thumbnail;
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "roomtype")
 	RoomType roomtype;
     

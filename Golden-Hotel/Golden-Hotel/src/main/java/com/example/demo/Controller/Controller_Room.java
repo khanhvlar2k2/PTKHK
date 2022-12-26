@@ -75,6 +75,8 @@ public class Controller_Room {
 		model.addAttribute("room2", RMTP);
 		model.addAttribute("available", daoRTP.getAvailableRoom());
 		session.setAttribute("objectneeded", RMTP);
+		RMTP.setViews(RMTP.getViews()+1);
+		daoRTP.save(RMTP);
 		return "room/rooms-single";
 	}
 

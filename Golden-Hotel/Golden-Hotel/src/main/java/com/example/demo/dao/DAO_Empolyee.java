@@ -24,4 +24,7 @@ public interface DAO_Empolyee extends  JpaRepository<Empolyee, Integer >{
 	@Query("Select e From Empolyee e Where e.email=?1")
 	public Empolyee finbyEmailname(String email);
 	
+	@Query(value="select count(id) from employee",nativeQuery=true)
+	public int getEmpolyeeCount();
+	
 }

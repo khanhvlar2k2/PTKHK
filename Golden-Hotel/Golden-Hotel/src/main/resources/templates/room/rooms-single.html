@@ -14,8 +14,12 @@
 					<div class="row">
 						<div class="col-md-12 ftco-animate">
 							<h2 class="mb-4" th:text="${room2.name}">Family Room</h2>
+							<p><span class="price mr-2">[[${room2.views}]]</span> <span class="per">
+													views</span></p>
 							<p><span class="price mr-2">[[${room2.price}]] $</span> <span class="per">per
 													night</span></p>
+														
+							
 							<div class="single-slider owl-carousel">
 								<div class="item" th:each="images : ${images}">
 									<img class="room-img"  th:src="@{|${images.thumbnail}|}"alt="">

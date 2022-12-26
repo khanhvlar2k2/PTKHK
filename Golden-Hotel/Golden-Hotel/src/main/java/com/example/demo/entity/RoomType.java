@@ -10,7 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
+
+import org.hibernate.FetchMode;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -33,6 +39,7 @@ public class RoomType {
 	List<Room> room;
 	@JsonIgnore
 	@OneToMany(mappedBy = "roomtype")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	List<Gallery> gallery;
 	int price;
 	String roomdesc;
