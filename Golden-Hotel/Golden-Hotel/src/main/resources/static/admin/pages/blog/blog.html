@@ -1,0 +1,170 @@
+<div class="container-fluid py-4">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header pb-0 px-3">
+					<h6 class="mb-0" style="text-align:center; padding:10px;">INFORMATION BLOG</h6>
+				</div>
+				<div class="card-body pt-4 p-3">
+					<form class="text-start" method="post">
+						<div class="form-group col-md-12">
+							<label for="inputEmail4">Title</label> <input type="text"  ng-model="form.title"name="title" class="form-control"
+								id="inputEmail4">
+
+						</div>
+						<div class="form-group col-md-12">
+							<label for="comment">Description:</label>
+							<textarea class="form-control" name="description" rows="4" ng-model="form.description" id="comment"></textarea>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputEmail4">Views</label> <input type="text" name="view" ng-model="form.views" class="form-control"
+								id="inputEmail4">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputEmail4">Create Date</label> <input type="date" disabled name="date" ng-model="form.date"
+								class="form-control" id="inputEmail4">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputEmail4">Employee</label> <input ng-value="account.fullname"   ng-model="form.employee.id" 
+								class="form-control"  id="inputEmail4">
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-outline-secondary" ng-click="reset()">New</button>
+							<button type="submit" class="btn btn-outline-success" ng-click="create()">Save</button>
+							<button type="submit" class="btn btn-outline-dark" ng-click="update()">Update</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-header pb-0 px-3">
+					<h6 class="mb-0" style="text-align:center; padding:10px;">EDIT PICTURE</h6>
+				</div>
+				<div class="card-body pt-4 p-3">
+					<div class="form-group col-md-12">
+						<img class="image-content-image d-block rounded" style="width: 100%; height: 100%;"
+							ng-src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
+							alt="user-avatar"> <br>
+						<input class="form-control" type="file" name="photofile" id="formFile"
+							accept="image/png, image/jpeg"
+							onchange="angular.element(this).scope().imageChanged(this.files)" />
+
+					</div>
+				</div>
+				<div class="card-body pt-4 p-3">
+					<div class="form-group col-md-12">
+						<img class="image-content-image d-block rounded" style="width: 100%; height: 100%;"
+							ng-src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
+							alt="user-avatar"> <br>
+						<input class="form-control" type="file" name="photofile" id="formFile"
+							accept="image/png, image/jpeg" onchange="angular.element(this).scope().imageChanged()" />
+					</div>
+				</div>
+				<div class="card-body pt-4 p-3">
+					<div class="form-group col-md-12">
+						<img class="image-content-image d-block rounded" style="width: 100%; height: 100%;"
+							ng-src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
+							alt="user-avatar"> <br>
+						<input class="form-control" type="file" name="photofile" id="formFile"
+							accept="image/png, image/jpeg"
+							onchange="angular.element(this).scope().imageChanged(this.files)" />
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header pb-0 px-3">
+					<h6 class="mb-0">BLOG LIST</h6>
+				</div>
+				<div class="card-body pt-4 p-3">
+					<ul class="list-group">
+						<li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg"
+							ng-repeat="item in pager.items | filter:searchEmp">
+							<div class="d-flex flex-column">
+								<h6 class=" text-sm">{{item.firstname}} {{item.lastname}}</h6>
+								<span class="mb-2 text-xs">Phone Number: <span
+										class="text-dark font-weight-bold ms-sm-2">{{item.phoneno}}</span></span>
+								<span class="mb-2 text-xs">Email Address: <span
+										class="text-dark ms-sm-2 font-weight-bold">{{item.email}}</span></span>
+								<span class="text-xs">CCCD/CMND: <span
+										class="text-dark ms-sm-2 font-weight-bold">{{item.pid}}</span></span>
+							</div> &emsp;
+							<div class="d-flex flex-column">
+								&nbsp;&nbsp;&nbsp;&nbsp;<br>
+								<span class="mb-2 text-xs">Brithday: <span
+										class="text-dark font-weight-bold ms-sm-2">{{item.dob |
+										date:'MM/dd/yyyy'}}</span></span>
+								<span class="mb-2 text-xs">Sex: <span
+										class="text-dark ms-sm-2 font-weight-bold">{{item.gender
+										? 'Famale':'Male'}}</span></span>
+								<span class="text-xs">Address: <span
+										class="text-dark ms-sm-2 font-weight-bold">null</span></span>
+							</div>
+							<div class="ms-auto text-end">
+								<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
+										class="material-icons text-sm me-2">delete</i>Delete</a>
+								<a class="btn btn-link text-dark px-3 mb-0" href="#!billing"><i
+										class="material-icons text-sm me-2">
+										edit
+									</i>Edit</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="justify-content-center mt-2 mb-2 w-100" style="text-align: center;">
+					<button ng-click="pager.first()" class="btn btn-info">
+						<span class="material-icons"> first_page </span>
+					</button>
+					<button ng-click="pager.previous()" class="btn btn-info">
+						<span class="material-icons"> arrow_left </span>
+					</button>
+					<button class="btn btn-success">{{pager.page+1}} of
+						{{pager.count}}</button>
+					<button ng-click="pager.next()" class="btn btn-info">
+						<span class="material-icons"> arrow_right </span>
+					</button>
+					<button ng-click="pager.last()" class="btn btn-info">
+						<span class="material-icons"> last_page </span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<footer class="footer py-4  ">
+	<div class="container-fluid">
+		<div class="row align-items-center justify-content-lg-between">
+			<div class="col-lg-6 mb-lg-0 mb-4">
+				<div class="copyright text-center text-sm text-muted text-lg-start">
+					©
+					<script>
+						document.write(new Date().getFullYear())
+					</script>
+					, made with <i class="fa fa-heart"></i> by <a href="" class="font-weight-bold"
+						target="_blank">Golden Hotel</a> for a
+					better web.
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<ul class="nav nav-footer justify-content-center justify-content-lg-end">
+					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">Golden Hotel</a>
+					</li>
+					<li class="nav-item"><a href="" class="nav-link text-muted" target="_blank">About Us</a>
+					</li>
+					<li class="nav-item"><a href="/blog" class="nav-link text-muted" target="_blank">Blog</a>
+					</li>
+					<li class="nav-item"><a href="/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>

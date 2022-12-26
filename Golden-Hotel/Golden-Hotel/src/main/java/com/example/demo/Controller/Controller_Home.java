@@ -27,13 +27,13 @@ import com.example.demo.dao.DAO_Gallery;
 import com.example.demo.dao.DAO_Guest;
 import com.example.demo.dao.DAO_Room;
 import com.example.demo.dao.DAO_RoomType;
-import com.example.demo.dao.FeedBackDAO;
+
 import com.example.demo.entity.Booking;
 import com.example.demo.entity.Guest;
-import com.example.demo.entity.HotelFeedback;
+
 import com.example.demo.entity.Room;
 import com.example.demo.entity.RoomType;
-import com.example.demo.service.MailTemPlate;
+
 import com.example.demo.service.MailerService;
 import com.nimbusds.oauth2.sdk.http.HTTPRequest;
 
@@ -62,8 +62,8 @@ public class Controller_Home {
 	@Autowired
 	MailerService mailer;
 	
-	@Autowired
-	FeedBackDAO feedbackDAO;
+//	@Autowired
+//	FeedBackDAO feedbackDAO;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime date;
@@ -102,7 +102,7 @@ public class Controller_Home {
 	public String contact(Model model) {
 		model.addAttribute("title", "FeedBack");
 		model.addAttribute("title2", "FeedBack Us");
-        model.addAttribute("feedbackhotel", new HotelFeedback());
+        //model.addAttribute("feedbackhotel", new HotelFeedback());
 
 		return "home/contact";
 	}
@@ -229,10 +229,10 @@ public class Controller_Home {
 
 
 	}
-	@PostMapping("/handleFeedback")
-	protected String handleFeedback(HotelFeedback htlFeedback) throws MessagingException {
-		feedbackDAO.save(htlFeedback);
-		mailer.send(htlFeedback.getEmail(), "THANK YOU FOR YOUR FEEDBACK" , MailTemPlate.FEEDBACKTEMPLATE);
-		return "redirect:/home/index";
-	}
+//	@PostMapping("/handleFeedback")
+//	protected String handleFeedback(HotelFeedback htlFeedback) throws MessagingException {
+//		feedbackDAO.save(htlFeedback);
+//		mailer.send(htlFeedback.getEmail(), "THANK YOU FOR YOUR FEEDBACK" , MailTemPlate.FEEDBACKTEMPLATE);
+//		return "redirect:/home/index";
+//	}
 }

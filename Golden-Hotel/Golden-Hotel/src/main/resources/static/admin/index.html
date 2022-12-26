@@ -110,6 +110,18 @@
 						
 						</div> <span class="nav-link-text ms-1">Guest Manager</span>
 				</a></li>
+				<li class="nav-item"
+					ng-class="{'nav-item active':selectedTab === 'blog','nav-item':selectedTab != 'blog'}"
+					ng-click="selectedTab = 'blog'"><a
+					class="nav-link text-white "
+					ng-class="{'nav-link bg-gradient-primary':selectedTab === 'blog','nav-link':selectedTab != 'blog'}"
+					href="#!blog-manager">
+						<div
+							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+							<i class="material-icons opacity-10">book</i>
+						
+						</div> <span class="nav-link-text ms-1">Blog Manager</span>
+				</a></li>
 				<li class="nav-item mt-3">
 					<h6
 						class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">MANAGER</h6>
@@ -669,6 +681,7 @@ manage_accounts
 	<script src="assets/js/roomtype-manager-ctrl.js"></script> 
 	<script src="assets/js/authority-ctrl.js"></script> 
 	<script src="assets/js/guest-ctrl.js"></script> 
+	<script src="assets/js/blog-ctrl.js"></script> 
 	<!-- Github buttons -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!-- Control Center for GOLDEN-HOTELDashboard: parallax effects, scripts for the example pages etc -->

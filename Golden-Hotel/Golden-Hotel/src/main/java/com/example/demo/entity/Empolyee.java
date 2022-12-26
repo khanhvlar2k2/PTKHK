@@ -48,6 +48,12 @@ public class Empolyee {
      @JsonIgnore
   	 @OneToMany(mappedBy = "employee")
   	 List<Booking> booking;
+     
+     @JsonIgnore
+  	 @OneToMany(mappedBy = "employee")
+  	 List<Blog> blog;
+     
+     
 	
      
      
