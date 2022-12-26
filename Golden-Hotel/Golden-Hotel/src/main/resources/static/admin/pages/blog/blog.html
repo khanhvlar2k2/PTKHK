@@ -6,27 +6,29 @@
 					<h6 class="mb-0" style="text-align:center; padding:10px;">INFORMATION BLOG</h6>
 				</div>
 				<div class="card-body pt-4 p-3">
-					<form class="text-start" method="post">
+					<form class="text-start" >
+                        <input type="hidden" ng-model="form.employee.id = account.id">
 						<div class="form-group col-md-12">
 							<label for="inputEmail4">Title</label> <input type="text"  ng-model="form.title"name="title" class="form-control"
 								id="inputEmail4">
 
 						</div>
+						
 						<div class="form-group col-md-12">
-							<label for="comment">Description:</label>
-							<textarea class="form-control" name="description" rows="4" ng-model="form.description" id="comment"></textarea>
-						</div>
-						<div class="form-group col-md-12">
-							<label for="inputEmail4">Views</label> <input type="text" name="view" ng-model="form.views" class="form-control"
+							<label for="inputEmail4">Views</label> <input type="number" name="view" ng-model="form.views" class="form-control"
 								id="inputEmail4">
 						</div>
 						<div class="form-group col-md-12">
-							<label for="inputEmail4">Create Date</label> <input type="date" disabled name="date" ng-model="form.date"
+							<label for="inputEmail4">Date Submitted</label> <input type="date" disabled name="date" ng-model="form.date"
 								class="form-control" id="inputEmail4">
 						</div>
 						<div class="form-group col-md-12">
-							<label for="inputEmail4">Employee</label> <input ng-value="account.fullname"   ng-model="form.employee.id" 
+							<label for="inputEmail4">Poster</label> <input disabled ng-value="form.employee.fullname" 
 								class="form-control"  id="inputEmail4">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="comment">Description:</label>
+							<textarea class="form-control" name="description" rows="16" ng-model="form.description" id="comment"></textarea>
 						</div>
 						<div class="col-md-12">
 							<button type="submit" class="btn btn-outline-secondary" ng-click="reset()">New</button>
@@ -89,29 +91,15 @@
 						<li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg"
 							ng-repeat="item in pager.items | filter:searchEmp">
 							<div class="d-flex flex-column">
-								<h6 class=" text-sm">{{item.firstname}} {{item.lastname}}</h6>
-								<span class="mb-2 text-xs">Phone Number: <span
-										class="text-dark font-weight-bold ms-sm-2">{{item.phoneno}}</span></span>
-								<span class="mb-2 text-xs">Email Address: <span
-										class="text-dark ms-sm-2 font-weight-bold">{{item.email}}</span></span>
-								<span class="text-xs">CCCD/CMND: <span
-										class="text-dark ms-sm-2 font-weight-bold">{{item.pid}}</span></span>
+								<h6 class=" text-sm">{{item.title}} ({{item.date | date:'MM/dd/yyyy'}})</h6>
+								<h6 class=" text-sm">Poster: {{item.employee.fullname}} (Views:{{item.views}})</h6>
+								<span class="mb-2 text-xs">Decription: <span
+										class="text-dark font-weight-bold ms-sm-2">{{item.description}}</span>							
 							</div> &emsp;
-							<div class="d-flex flex-column">
-								&nbsp;&nbsp;&nbsp;&nbsp;<br>
-								<span class="mb-2 text-xs">Brithday: <span
-										class="text-dark font-weight-bold ms-sm-2">{{item.dob |
-										date:'MM/dd/yyyy'}}</span></span>
-								<span class="mb-2 text-xs">Sex: <span
-										class="text-dark ms-sm-2 font-weight-bold">{{item.gender
-										? 'Famale':'Male'}}</span></span>
-								<span class="text-xs">Address: <span
-										class="text-dark ms-sm-2 font-weight-bold">null</span></span>
-							</div>
 							<div class="ms-auto text-end">
-								<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
+								<a class="btn btn-link text-danger text-gradient px-3 mb-0" ng-click="delete(item)"><i
 										class="material-icons text-sm me-2">delete</i>Delete</a>
-								<a class="btn btn-link text-dark px-3 mb-0" href="#!billing"><i
+								<a class="btn btn-link text-dark px-3 mb-0" ng-click="edit(item)"><i
 										class="material-icons text-sm me-2">
 										edit
 									</i>Edit</a>

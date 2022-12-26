@@ -33,5 +33,6 @@ public class Blog {
      @ManyToOne
 	 @JoinColumn(name = "employeeid")
 	 Empolyee employee;
+
      
 }

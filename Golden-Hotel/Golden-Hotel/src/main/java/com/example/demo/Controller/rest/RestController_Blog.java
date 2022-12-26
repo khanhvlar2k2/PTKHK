@@ -2,6 +2,9 @@ package com.example.demo.Controller.rest;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,6 +31,7 @@ public class RestController_Blog {
      }
      @PostMapping("/blog")
      public Blog create(@RequestBody Blog blog){
+    	
      	return serviceBlog.save(blog);
      }
      @PutMapping("/blog/{id}")
