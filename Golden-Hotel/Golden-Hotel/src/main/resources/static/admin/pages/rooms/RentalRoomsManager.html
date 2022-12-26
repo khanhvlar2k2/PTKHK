@@ -9,7 +9,7 @@
 			<div class="card card-fix">
 				<div class="text-container">
 					<h6 class="text-change">
-						<a style="color: black;" href="">ALL({{courm.count}})</a>
+						<a style="color: black;" href="">ALL(${{courm.count}})</a>
 					</h6>
 				</div>
 			</div>
@@ -80,7 +80,7 @@
 				<div class="card-header p-3 pt-2">
 					<div
 						class="icon icon-lg icon-shape fix-gradient  text-center border-radius-xl mt-n4 position-absolute">
-						<h4 style="text-align: center; margin: 15px auto; color: white;">{{item.name}}</h4>
+						<h4 style="text-align: center; margin: 15px auto; color: white;">P{{item.name}}</h4>
 					</div>
 					<div class="text-end pt-1">
 						<p class="text-sm mb-0 text-capitalize">{{item.rtype.name}}</p>
@@ -95,7 +95,7 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<h5 class="modal-title" id="exampleModalLongTitle">ROOM
-											RENTAL INFORMATION({{form.name}})</h5>
+											RENTAL INFORMATION(P{{formb.name}})</h5>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
@@ -107,21 +107,21 @@
 												<div class="form-group col-md-6">
 
 													<input type="text" class="form-control" id="inputEmail4"
-														placeholder="Fist Name"
+														placeholder="Fist Name" ng-model="formb.booking.guest.firstname"
 														>
 												</div>
 												<div class="form-group col-md-6">
 													<input type="text" class="form-control" id="inputEmail4"
-														placeholder="Last Name"
+														placeholder="Last Name"  ng-model="formb.booking.guest.lastname"
 														>
 												</div>
                                                 
 												<div class="form-group col-md-12">
 													<input type="email" class="form-control" id="inputEmail4"
-														placeholder="Email" >
+														placeholder="Email" ng-model="formb.booking.guest.email" >
 												</div>
 												<div class="form-group col-md-8">
-													<input type="date" class="form-control" id="inputEmail4"
+													<input type="date" class="form-control" id="inputEmail4" ng-model="form.dob"
 														>
 												</div>
 												<div class="form-check col-md-4">
@@ -139,10 +139,10 @@
 												<div class="form-group col-md-5">
 													<input type="text" class="form-control" id="inputEmail4"
 														placeholder="Phone"
-														ng-model="form.booking[0].guest.phoneno">
+														ng-model="formb.booking.guest.phoneno">
 												</div>
 												<div class="form-group col-md-7">
-													<input type="text" class="form-control" id="inputEmail4"
+													<input type="text" class="form-control" ng-model="formb.booking.guest.pid" id="inputEmail4"
 														placeholder="CMND">
 												</div>
 
@@ -167,7 +167,7 @@
 										</form>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-primary">Save</button>
+										<button type="button" class="btn btn-primary" ng-click="update()">Save</button>
 									</div>
 								</div>
 							</div>
@@ -243,9 +243,9 @@
 											</div>
 											<div class="form-row">
 												<div class="form-group col-md-7">
-													BrithDay <input type="datetime" class="form-control"
-														id="inputAddress"
-														ng-model="form.booking[0].guest.dob | date:'dd/MM/yyyy'">
+													BrithDay <input type="date" class="form-control"
+														id="inputAddress">
+<!--														>ng-model="form.booking[0].guest.dob | date:'dd/MM/yyyy'-->
 												</div>
 
 												<div class="form-check col-md-5">
@@ -362,7 +362,7 @@
 				<hr class="dark horizontal my-0">
 				<div class="card-footer p-3">
 					<p class="mb-0" id="timedate">
-						<span style="font-weight: 500;">{{date |
+						<span style="font-weight: 500;">${{date |
 							date:'dd/MM/yyyy'}}</span>
 					</p>
 				</div>

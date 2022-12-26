@@ -136,18 +136,6 @@ public class Controller_Home {
 		model.addAttribute("title2", "Restaurant Us");
 		return "home/restaurant";
 	}
-	@GetMapping("/blog")
-	public String blog(Model model) {
-		model.addAttribute("title", "Blog");
-		model.addAttribute("title2", "Blog Us");
-		return "blog/blog";
-	}
-	@GetMapping("/blog/blog-detail")
-	public String blogDetai(Model model) {
-		model.addAttribute("title", "Blog");
-		model.addAttribute("title2", "Blog Us");
-		return "blog/blog-single";
-	}
 	@GetMapping("/checkout")
 	public String checkOut(Model model, HttpServletRequest req) {
 		model.addAttribute("title", "Booking");

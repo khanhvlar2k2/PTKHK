@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.dao.DAO_Booking;
 import com.example.demo.dao.DAO_Empolyee;
 import com.example.demo.dao.DAO_Guest;
+import com.example.demo.dao.DAO_Room;
 import com.example.demo.dao.DAO_RoomType;
 import com.example.demo.entity.Empolyee;
 import com.example.demo.entity.Guest;
+import com.example.demo.entity.Room;
 import com.example.demo.entity.RoomType;
 import com.example.demo.service.MailerService;
 
@@ -29,10 +32,10 @@ public class Controller_Admin {
 	DAO_RoomType serviceRoomType;
 	@Autowired
 	JavaMailSender sender;
-
 	@Autowired
 	MailerService mailer;
-
+	@Autowired DAO_Room serviceRoom;
+	@Autowired DAO_Booking serviceBooking;
 	@GetMapping({ "admin", "admin/home/index" })
 	public String admin(Model model) {
 		model.addAttribute("title", "About");
@@ -813,5 +816,17 @@ public class Controller_Admin {
 
 		return "redirect:/admin/index.html#!/guest-manager";
 	}
+	
+
+
+
+	
+	@GetMapping("/admin/index.html#!/retain-rooms-manager")
+	public String getRetailRoom(Model model) {
+		List<Room> listRooms = serviceRoom.findAll();
+		model.addAttribute("list", listRooms);	
+		return "redirect:/admin/index.html#!/retain-rooms-manager";
+	}
+	
 
 }

@@ -106,7 +106,7 @@
 						<li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg"
 							ng-repeat="item in pager.items | filter:searchEmp">
 							<div class="d-flex flex-column">
-								<h6 class=" text-sm">{{item.firstname}} {{item.lastname}}</h6>
+								<h6 class=" text-sm">{{item.firstname}} {{item.lastname}} {{item.id}}</h6>
 								<span class="mb-2 text-xs">Phone Number: <span
 										class="text-dark font-weight-bold ms-sm-2">{{item.phoneno}}</span></span>
 								<span class="mb-2 text-xs">Email Address: <span
@@ -126,8 +126,8 @@
 										class="text-dark ms-sm-2 font-weight-bold">null</span></span>
 							</div>
 							<div class="ms-auto text-end">
-								<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
-										class="material-icons text-sm me-2">delete</i>Delete</a>
+								<a class="btn btn-link text-danger text-gradient px-3 mb-0" ng-click="delete(item)"><i
+										class="material-icons text-sm me-2" >delete</i>Delete</a>
 								<a class="btn btn-link text-dark px-3 mb-0" href="#!billing"><i
 										class="material-icons text-sm me-2">
 										receipt_long

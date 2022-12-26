@@ -6,6 +6,24 @@ app.controller("guest-ctrl", function($scope, $http, $location) {
 			console.log(resp.data);
 		});		
 	}    
+	$scope.delete = function(item) {		
+		$http.delete(`/rest/guest/${item.id}`).then(resp => {
+			var index = $scope.items.findIndex(p => p.id == item.id);
+			$scope.items.splice(index, 1);
+			$.toast({
+				text: 'Deleted Guest '+'<b>' + item.id+'</b>' +' successful',
+				heading: 'Delete Information',
+				showHideTransition: 'plain',
+				icon: 'error', 
+				position: 'bottom-right',
+				textAlign: 'left'
+		})
+
+			console.log(resp.data);
+		}).catch(err => {
+			console.log("Error ", err);
+		})
+	}
 	$scope.initialize();
 	$scope.pager = {
 		page: 0,

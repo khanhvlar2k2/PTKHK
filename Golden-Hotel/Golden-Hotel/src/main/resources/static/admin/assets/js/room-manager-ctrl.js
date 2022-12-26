@@ -40,6 +40,7 @@ app.controller("room-manager-ctrl", function($scope, $http, $location) {
 		$http.post(`/rest/roomsManager`, item).then(resp => {
 				$scope.items.push(resp.data);
 				console.log(resp.data);
+				$scope.initialize();
 		}).catch(err => {
 			console.log("Error ", err);
 
@@ -53,6 +54,7 @@ app.controller("room-manager-ctrl", function($scope, $http, $location) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			console.log(resp.data);
+			$scope.initialize();
 		}).catch(err => {
 
 			console.log("Error ", err);

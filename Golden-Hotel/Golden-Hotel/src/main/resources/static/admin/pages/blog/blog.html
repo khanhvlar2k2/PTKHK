@@ -15,7 +15,7 @@
 						</div>
 						
 						<div class="form-group col-md-12">
-							<label for="inputEmail4">Views</label> <input type="number" name="view" ng-model="form.views" class="form-control"
+							<label for="inputEmail4">Views</label> <input disabled type="number" min="0" name="view" ng-model="form.views" class="form-control"
 								id="inputEmail4">
 						</div>
 						<div class="form-group col-md-12">
@@ -27,8 +27,12 @@
 								class="form-control"  id="inputEmail4">
 						</div>
 						<div class="form-group col-md-12">
+							<label for="inputEmail4">Link Video:</label> <input  ng-model="form.video" 
+								class="form-control"  id="inputEmail4">
+						</div>
+						<div class="form-group col-md-12">
 							<label for="comment">Description:</label>
-							<textarea class="form-control" name="description" rows="16" ng-model="form.description" id="comment"></textarea>
+							<textarea class="form-control" name="description" rows="10" ng-model="form.description" id="comment"></textarea>
 						</div>
 						<div class="col-md-12">
 							<button type="submit" class="btn btn-outline-secondary" ng-click="reset()">New</button>
@@ -48,28 +52,8 @@
 				<div class="card-body pt-4 p-3">
 					<div class="form-group col-md-12">
 						<img class="image-content-image d-block rounded" style="width: 100%; height: 100%;"
-							ng-src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
-							alt="user-avatar"> <br>
-						<input class="form-control" type="file" name="photofile" id="formFile"
-							accept="image/png, image/jpeg"
-							onchange="angular.element(this).scope().imageChanged(this.files)" />
-
-					</div>
-				</div>
-				<div class="card-body pt-4 p-3">
-					<div class="form-group col-md-12">
-						<img class="image-content-image d-block rounded" style="width: 100%; height: 100%;"
-							ng-src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
-							alt="user-avatar"> <br>
-						<input class="form-control" type="file" name="photofile" id="formFile"
-							accept="image/png, image/jpeg" onchange="angular.element(this).scope().imageChanged()" />
-					</div>
-				</div>
-				<div class="card-body pt-4 p-3">
-					<div class="form-group col-md-12">
-						<img class="image-content-image d-block rounded" style="width: 100%; height: 100%;"
-							ng-src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
-							alt="user-avatar"> <br>
+							
+							alt="blog-thumbnail" ng-src="../blog/{{form.thumbnail}}"> <br>
 						<input class="form-control" type="file" name="photofile" id="formFile"
 							accept="image/png, image/jpeg"
 							onchange="angular.element(this).scope().imageChanged(this.files)" />

@@ -19,7 +19,9 @@ app.controller("blog-ctrl", function($scope, $http, $location) {
 	$scope.reset = function() {
 		$scope.form = {
 			date: new Date(),
-			employeeid: $scope.account.id
+			employeeid: $scope.account.id,
+			thumbnail : 'empty.jpg'
+			
 		}
 
 	}
@@ -71,6 +73,18 @@ app.controller("blog-ctrl", function($scope, $http, $location) {
 			console.log(resp.data);
 		}).catch(err => {
 			console.log("Error ", err);
+		})
+	}
+	$scope.imageChanged = function(files) {
+		var data = new FormData();
+		data.append('file', files[0]);
+		$http.post('/rest/upload/blog', data, {
+			transformRequest: angular.identity,
+			headers: { 'Content-Type': undefined }
+		}).then(resp => {
+			$scope.form.thumbnail = resp.data.name;
+		}).catch(err => {
+			console.log("Error ", err)
 		})
 	}
 	$scope.reset();
