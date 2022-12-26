@@ -110,7 +110,7 @@ public class Controller_Home {
 	public String contact(Model model) {
 		model.addAttribute("title", "FeedBack");
 		model.addAttribute("title2", "FeedBack Us");
-        model.addAttribute("feedbackhotel", new HotelFeedback());
+        //model.addAttribute("feedbackhotel", new HotelFeedback());
 
 		return "home/contact";
 	}

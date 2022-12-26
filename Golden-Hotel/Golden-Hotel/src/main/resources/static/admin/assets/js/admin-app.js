@@ -19,6 +19,10 @@ app.config(function($routeProvider) {
 			templateUrl: "../admin/pages/guest/guests.html",
 			controller: "guest-ctrl"
 		}).
+		when("/blog-manager", {
+			templateUrl: "../admin/pages/blog/blog.html",
+			controller: "blog-ctrl"
+		}).
 		when("/profile", {
 			templateUrl: "../admin/pages/account/profile.html",
 			controller: ""
